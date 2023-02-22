@@ -1,0 +1,67 @@
+---
+import Starfield from "~/components/Starfield.astro";
+import Lottie from "~/components/LottieComponent.jsx";
+import { Icon } from "astro-icon";
+---
+
+<section class="relative h-full bg-black">
+  <Starfield />
+
+  <div class="relative flex h-full place-items-center md:flex-col">
+    <!-- <Picture
+      class="object-cover w-full h-full"
+      src={heroPng}
+      widths={widths}
+      sizes={sizes}
+      loading="eager"
+      alt="A floating astronaut in a space suit"
+    /> -->
+
+    <Lottie client:load />
+
+    <div
+      class="absolute bottom-16 flex w-full flex-col place-items-center justify-center text-center text-white md:bottom-4"
+    >
+      <Icon pack="mdi" name="rocket" class="h-8" />
+      <span>Dream to Digital</span>
+    </div>
+  </div>
+
+  <noscript>
+    <style>
+      #splash-bg-fallback {
+        display: block;
+      }
+    </style>
+  </noscript>
+
+  <style>
+    @keyframes float {
+      0% {
+        transform: translate3d(0, 0, 0);
+      }
+
+      100% {
+        transform: translate3d(0, 30px, 0);
+      }
+    }
+
+    #astronaut {
+      animation: float linear 2.5s infinite alternate;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      #astronaut {
+        @apply animate-none;
+      }
+
+      :global(#starfield) {
+        @apply hidden;
+      }
+
+      #splash-bg-fallback {
+        @apply block;
+      }
+    }
+  </style>
+</section>

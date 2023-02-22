@@ -1,0 +1,43 @@
+---
+import { Icon } from "astro-icon";
+import type { FooterLink } from "~/types";
+
+const links: Array<FooterLink> = [
+  {
+    url: "https://github.com/incresco",
+    description: "GitHub",
+    icon: "mdi:github",
+  },
+  {
+    url: "https://www.linkedin.com/company/incresco-technology/",
+    description: "Linkedin",
+    icon: "mdi:linkedin",
+  },
+  {
+    url: "https://medium.com/incresco",
+    description: "Medium",
+    icon: "mdi:medium",
+  },
+];
+---
+
+<footer class="relative flex h-32 flex-col items-center justify-center">
+  <ul class="relative grid grid-cols-3 gap-8">
+    {
+      links.map((link) => (
+        <li>
+          <a
+            class="flex h-16 w-16 items-center justify-center rounded-full  p-2"
+            href={link.url}
+          >
+            <span class="sr-only">{link.description}</span>
+            <Icon class="h-full" name={link.icon} />
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+  <div class="items-center justify-center p-4 text-center text-xs">
+    2022 © All rights reserved.<br /> Incresco Technology Solutions Private limited
+  </div>
+</footer>

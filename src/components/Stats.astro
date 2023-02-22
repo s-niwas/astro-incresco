@@ -1,0 +1,88 @@
+---
+interface Item {
+  name: string;
+  value: string;
+}
+
+export interface Props {
+  title?: string;
+  subtitle?: string;
+  highlight?: string;
+  items?: Array<Item>;
+}
+
+const {
+  title = await Astro.slots.render("title"),
+  subtitle = await Astro.slots.render("subtitle"),
+  highlight,
+  items = [],
+} = Astro.props;
+---
+
+<script>
+  function animatedCounter(targer, time = 200, start = 0) {
+    return {
+      current: 0,
+      target: targer,
+      time: time,
+      start: start,
+      updatecounter: function () {
+        start = this.start;
+        const increment = (this.target - start) / this.time;
+        const handle = setInterval(() => {
+          if (this.current < this.target) this.current += increment;
+          else {
+            clearInterval(handle);
+            this.current = this.target;
+          }
+        }, 1);
+      },
+    };
+  }
+</script>
+<div
+  class="mx-auto max-w-6xl px-4 py-4 sm:px-6 md:py-16 md:px-24 lg:px-8 lg:py-20"
+>
+  {
+    (title || subtitle || highlight) && (
+      <div class="mb-10 max-w-xl sm:text-center md:mx-auto md:mb-12 lg:max-w-2xl">
+        {highlight && (
+          <p class="text-primary text-base font-semibold uppercase tracking-wide dark:text-blue-200">
+            {highlight}
+          </p>
+        )}
+        {title && (
+          <h2
+            class="font-heading mb-4 max-w-lg text-3xl font-bold leading-none tracking-tight sm:text-4xl md:mx-auto"
+            set:html={title}
+          />
+        )}
+        {subtitle && (
+          <p
+            class="text-muted mx-auto max-w-3xl text-center text-xl dark:text-slate-400"
+            set:html={subtitle}
+          />
+        )}
+      </div>
+    )
+  }
+  <div class="row-gap-8 grid grid-cols-2 gap-3 md:grid-cols-4">
+    {
+      items.map(({ name, value }) => (
+        <div class="mb-12  text-center md:mb-0 md:border-r md:last:border-none dark:md:border-slate-500">
+          <div
+            class="font-heading text-primary  font-bold dark:text-blue-600 lg:text-5xl xl:text-6xl"
+            data="animatedCounter(300, 200)"
+            x-init="updatecounter"
+            x-text="Math.round(current)"
+          >
+            {value}
+          </div>
+          <p class="text-sm font-medium uppercase tracking-widest dark:text-slate-400 lg:text-base">
+            {name}
+          </p>
+        </div>
+      ))
+    }
+  </div>
+</div>

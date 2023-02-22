@@ -1,0 +1,75 @@
+---
+import ContentSection from "~/components/ContentSection.astro";
+import type { TechnologyItem } from "~/types";
+import TechnologyList from "~/components/TechnologyList.astro";
+
+const frameworks: Array<TechnologyItem> = [
+  {
+    title: "React",
+    icon: "mdi:react",
+  },
+  {
+    title: "React Native",
+    icon: "mdi:react",
+  },
+  {
+    title: "Nextjs",
+    icon: "teenyicons:nextjs-outline",
+  },
+
+  {
+    title: "Astro",
+    icon: "simple-icons:astro",
+  },
+  {
+    title: "Vue",
+    icon: "mdi:vuejs",
+  },
+  { title: "Angular", icon: "mdi:angular" },
+
+  { title: "Vite", icon: "simple-icons:vite" },
+  { title: "Webpack", icon: "mdi:webpack" },
+  {
+    title: "AWS",
+    icon: "cib:amazon-aws",
+  },
+  {
+    title: "Azure",
+    icon: "mdi:microsoft-azure",
+  },
+  {
+    title: "Firebase",
+    icon: "mdi:firebase",
+  },
+  {
+    title: "GCP",
+    icon: "mdi:google-cloud",
+  },
+  { title: "Serverless", icon: "gg:serverless" },
+
+  {
+    title: "Salesforce",
+    icon: "fa-brands:salesforce",
+  },
+
+  {
+    title: "Node",
+    icon: "mdi:nodejs",
+  },
+
+  { title: "GraphQL", icon: "mdi:graphql" },
+  { title: "Storyblok", icon: "simple-icons:storyblok" },
+
+  { title: "Flutter", icon: "cib:flutter" },
+  // { title: "Figma", icon: "tabler:brand-figma" },
+  // { title: "Sketch", icon: "ci:sketch" },
+];
+---
+
+<ContentSection title="Our Tech Stack" id="technology">
+  <Fragment slot="lead">
+    <span class="text-primary">Cloud-native, serverless</span> software solutions
+    using latest web & mobile app technologies
+  </Fragment>
+  <TechnologyList items={frameworks} />
+</ContentSection>

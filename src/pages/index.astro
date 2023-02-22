@@ -1,0 +1,112 @@
+---
+import "@fontsource/inter/variable.css";
+
+import Features from "~/components/Features.astro";
+import Footer from "~/components/Footer.astro";
+import Header from "~/components/Header.astro";
+import Intro from "~/components/Intro.astro";
+import Clients from "~/components/Clients.astro";
+import ContactForm from "~/components/ContactForm.astro";
+import Splash from "~/components/Splash.astro";
+import Technology from "~/components/Technology.astro";
+import "~/styles/index.css";
+
+const { generator, site } = Astro;
+const image = new URL("social.jpg", site);
+const company = "Incresco";
+const title = "Incresco Technology Solutions - Dream to Digital";
+const description =
+  "Incresco is a leading web and mobile app development company that offers customized solutions to help businesses transform digitally. Our services include web development, mobile app development, UI/UX design, e-commerce development, and digital marketing. We use agile methodologies and innovative techniques to deliver high-quality solutions that are scalable, secure, and user-friendly. Partner with us to achieve your business objectives and drive growth in the digital world.";
+const keywords =
+  "top website design and development company, best web design and development company, web design and development services, custom web development company, web development, mobile app development, ui/ux design, e-commerce development, custom software development, agile methodologies, cross-platform development, native app development, hybrid app development, front-end development, back-end development, cloud computing, digital transformation, software engineering, project management.";
+---
+
+<!DOCTYPE html>
+<html lang="en" class="h-full motion-safe:scroll-smooth" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="generator" content={generator} />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="author" content={company} />
+    <meta name="keywords" content={keywords} <!-- social media -- />
+    <meta property="og:title" content={title} />
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={image} />
+    <meta property="og:url" content={site} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta itemProp="publisher" content={company} />
+    <meta itemProp="url" content={site} />
+    <meta itemProp="editor" content={company} />
+    <meta itemProp="headline" content={company} />
+    <meta itemProp="inLanguage" content="English" />
+    <meta itemProp="articleSection" content={company} />
+    <meta itemProp="sourceOrganization" content={company} />
+    <meta itemProp="keywords" content={keywords} />
+    <meta name="DC.title" content={title} />
+    <meta name="dc.source" content="//increscotech.com" />
+    <meta name="dc.keywords" content={keywords} />
+    <meta name="dc.subject" content={company} />
+    <meta name="dc.description" content={description} />
+    <meta name="DC.Type" content="Web Application Development" />
+
+    <!-- initialize theme -->
+    <script is:inline>
+      const themeSaved = localStorage.getItem("theme");
+
+      if (themeSaved) {
+        document.documentElement.dataset.theme = themeSaved;
+      } else {
+        const prefersDark = window.matchMedia(
+          "(prefers-color-scheme: dark)"
+        ).matches;
+        document.documentElement.dataset.theme = prefersDark ? "dark" : "light";
+      }
+
+      window
+        .matchMedia("(prefers-color-scheme: dark)")
+        .addEventListener("change", (event) => {
+          if (!localStorage.getItem("theme")) {
+            document.documentElement.dataset.theme = event.matches
+              ? "dark"
+              : "light";
+          }
+        });
+    </script>
+    <!-- head -->
+
+    <!-- Google tag (gtag.js) -->
+    <script
+      type="text/partytown"
+      src="https://www.googletagmanager.com/gtag/js?id=G-VLLQV67JW6"
+    ></script>
+    <script type="text/partytown">
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-VLLQV67JW6");
+    </script>
+    <!-- more head -->
+  </head>
+  <body
+    class="h-full overflow-x-hidden bg-default text-default text-base selection:bg-secondary selection:text-white"
+  >
+    <Header />
+    <Splash />
+    <div class="space-y-24 px-8 py-16">
+      <Intro />
+      <Features />
+      <Technology />
+
+      <Clients />
+      <ContactForm />
+    </div>
+    <Footer />
+  </body>
+</html>

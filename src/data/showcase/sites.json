@@ -1,0 +1,63 @@
+[
+  {
+    "title": "Edvanza",
+    "image": "./images/edvanza.png"
+  },
+  {
+    "title": "EF",
+    "image": "./images/ef.png"
+  },
+  {
+    "title": "Planet Smart City",
+    "image": "./images/planetsim.png"
+  },
+  {
+    "title": "xto10x",
+    "image": "./images/xto10x.png"
+  },
+  {
+    "title": "Nowon",
+    "image": "./images/nowon.png"
+  },
+  {
+    "title": "Properti Ag",
+    "image": "./images/properti.png"
+  },
+  {
+    "title": "Clime Up",
+    "image": "./images/climeup.png"
+  },
+  {
+    "title": "Gist Impact",
+    "image": "./images/gistimpact.png"
+  },
+  {
+    "title": "Gaininsight ",
+    "image": "./images/gaininsights.png"
+  },
+  {
+    "title": "Analytic Edge ",
+    "image": "./images/analyticedge.png"
+  },
+
+  {
+    "title": "Bas4e",
+    "image": "./images/bas4e.png"
+  },
+  {
+    "title": "Brightbee",
+    "image": "./images/brightbee.png"
+  },
+  {
+    "title": "Curintech",
+    "image": "./images/curintech.png"
+  },
+  {
+    "title": "Unify",
+    "image": "./images/unify.png"
+  },
+  {
+    "title": "Digital wellness",
+    "image": "./images/digitalwellness.png"
+  }
+]
