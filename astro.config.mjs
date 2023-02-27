@@ -2,12 +2,18 @@ import image from "@astrojs/image";
 import tailwind from "@astrojs/tailwind";
 import partytown from "@astrojs/partytown";
 import react from "@astrojs/react";
+import mdx from "@astrojs/mdx";
+import compress from "astro-compress";
 import sitemap from "@astrojs/sitemap";
 import minifyHtml from "astro-html-minifier";
 import { defineConfig } from "astro/config";
+import { readingTimeRemarkPlugin } from "./src/utils/frontmatter.mjs";
 
 export default defineConfig({
   site: "https://incresco-astro.vercel.app",
+  markdown: {
+    remarkPlugins: [readingTimeRemarkPlugin],
+  },
   integrations: [
     tailwind(),
     sitemap(),
@@ -22,7 +28,20 @@ export default defineConfig({
       },
     }),
     minifyHtml(),
+    mdx(),
+    compress({
+      css: true,
+      html: {
+        removeAttributeQuotes: false,
+      },
+      img: false,
+      js: true,
+      svg: false,
+
+      logger: 1,
+    }),
   ],
+
   vite: {
     ssr: {
       external: ["svgo"],
