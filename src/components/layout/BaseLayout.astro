@@ -1,0 +1,116 @@
+---
+import "@fontsource/inter/variable.css";
+import "~/styles/index.css";
+
+import { SITE } from "~/config.mjs";
+import { MetaSEO } from "~/types";
+
+const { generator, site } = Astro;
+const keywords =
+  "top website design and development company, best web design and development company, web design and development services, custom web development company, web development, mobile app development, ui/ux design, e-commerce development, custom software development, agile methodologies, cross-platform development, native app development, hybrid app development, front-end development, back-end development, cloud computing, digital transformation, software engineering, project management.";
+
+const { language = "en", textDirection = "ltr" } = SITE;
+const company = "Incresco";
+export interface Props {
+  meta?: MetaSEO;
+}
+
+const { meta = {} } = Astro.props;
+const { title, description, image } = meta;
+---
+
+<!DOCTYPE html>
+<html lang="en" class="h-full motion-safe:scroll-smooth" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="generator" content={generator} />
+
+    <title>{title}</title>
+    <meta name="description" content={meta.description} />
+    <meta name="author" content={company} />
+    <meta name="keywords" content={keywords} <!-- social media -- />
+    <meta property="og:title" content={title} />
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={image} />
+    <meta property="og:url" content={site} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta itemProp="publisher" content={company} />
+    <meta itemProp="url" content={site} />
+    <meta itemProp="editor" content={company} />
+    <meta itemProp="headline" content={company} />
+    <meta itemProp="inLanguage" content="English" />
+    <meta itemProp="articleSection" content={company} />
+    <meta itemProp="sourceOrganization" content={company} />
+    <meta itemProp="keywords" content={keywords} />
+    <meta name="DC.title" content={title} />
+    <meta name="dc.source" content="//increscotech.com" />
+    <meta name="dc.keywords" content={keywords} />
+    <meta name="dc.subject" content={company} />
+    <meta name="dc.description" content={description} />
+    <meta name="DC.Type" content="Web Application Development" />
+
+    <!-- initialize theme -->
+    <script is:inline>
+      const themeSaved = localStorage.getItem("theme");
+
+      if (themeSaved) {
+        document.documentElement.dataset.theme = themeSaved;
+      } else {
+        const prefersDark = window.matchMedia(
+          "(prefers-color-scheme: dark)"
+        ).matches;
+        document.documentElement.dataset.theme = prefersDark ? "dark" : "light";
+      }
+
+      window
+        .matchMedia("(prefers-color-scheme: dark)")
+        .addEventListener("change", (event) => {
+          if (!localStorage.getItem("theme")) {
+            document.documentElement.dataset.theme = event.matches
+              ? "dark"
+              : "light";
+          }
+        });
+    </script>
+    <!-- head -->
+
+    <!-- Google tag (gtag.js) -->
+    <script
+      type="text/partytown"
+      src="https://www.googletagmanager.com/gtag/js?id=G-VLLQV67JW6"
+    ></script>
+    <script type="text/partytown">
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-VLLQV67JW6");
+    </script>
+    <!-- Hotjar Tracking Code for Incresco Astro -->
+    <script type="text/partytown">
+      (function (h, o, t, j, a, r) {
+        h.hj =
+          h.hj ||
+          function () {
+            (h.hj.q = h.hj.q || []).push(arguments);
+          };
+        h._hjSettings = { hjid: 3387083, hjsv: 6 };
+        a = o.getElementsByTagName("head")[0];
+        r = o.createElement("script");
+        r.async = 1;
+        r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
+        a.appendChild(r);
+      })(window, document, "https://static.hotjar.com/c/hotjar-", ".js?sv=");
+    </script>
+    <!-- more head -->
+  </head>
+  <body
+    class="h-full overflow-x-hidden bg-default text-default text-base selection:bg-secondary selection:text-white"
+  >
+    <slot />
+  </body>
+</html>

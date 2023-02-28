@@ -1,7 +1,7 @@
 ---
-import ContentSection from "~/components/ContentSection.astro";
+import ContentSection from "~/components/home/ContentSection.astro";
 import type { TechnologyItem } from "~/types";
-import TechnologyList from "~/components/TechnologyList.astro";
+import TechnologyList from "~/components/home/TechnologyList.astro";
 
 const frameworks: Array<TechnologyItem> = [
   {
@@ -69,7 +69,7 @@ const frameworks: Array<TechnologyItem> = [
 <ContentSection title="Our Tech Stack" id="technology">
   <Fragment slot="lead">
     <span class="text-primary">Cloud-native, serverless</span> software solutions
-    using latest web & mobile app technologies
+    with latest web & mobile app technologies
   </Fragment>
   <TechnologyList items={frameworks} />
 </ContentSection>

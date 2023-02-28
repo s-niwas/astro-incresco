@@ -18,6 +18,7 @@ export interface FooterLink {
 export interface NavItem {
   title: string;
   url: string;
+  target: string;
 }
 
 export interface ShowcaseSite {

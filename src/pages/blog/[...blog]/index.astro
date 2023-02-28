@@ -3,7 +3,8 @@ import { BLOG } from "~/config.mjs";
 
 import SinglePost from "~/components/blog/SinglePost.astro";
 import ToBlogLink from "~/components/blog/ToBlogLink.astro";
-
+import Footer from "~/components/common/Footer.astro";
+import Header from "~/components/common/Header.astro";
 import { getCanonical, getPermalink } from "~/utils/permalinks";
 import { fetchPosts } from "~/utils/blogUtils";
 import { findImage } from "~/utils/images";
@@ -32,7 +33,9 @@ const meta = {
 ---
 
 <Fragment>
+  <Header />
   <SinglePost post={{ ...post, image: meta.image }} url={url}>
     <ToBlogLink />
   </SinglePost>
+  <Footer />
 </Fragment>

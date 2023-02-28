@@ -1,0 +1,27 @@
+---
+import Layout from "~/components/layout/BaseLayout.astro";
+import Header from "~/components/common/Header.astro";
+import StickyHeader from "~/components/common/StickyHeader.astro";
+import Footer from "~/components/common/Footer.astro";
+
+import { MetaSEO } from "~/types";
+
+export interface Props {
+  meta?: MetaSEO;
+  sticky?: boolean;
+}
+
+const { meta, sticky = false } = Astro.props;
+---
+
+<Layout {meta}>
+  <slot name="header">
+    {sticky ? <StickyHeader /> : <Header />}
+
+    <slot />
+
+    <slot name="footer">
+      <Footer />
+    </slot>
+  </slot>
+</Layout>

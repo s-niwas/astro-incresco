@@ -1,6 +1,6 @@
 import React from "react";
 import { useLottie } from "lottie-react";
-import animationData from "../assets/hero.json";
+import animationData from "../../assets/hero.json";
 
 const App = () => {
   const options = {

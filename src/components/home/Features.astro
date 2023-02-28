@@ -1,15 +1,9 @@
 ---
 import { Icon } from "astro-icon";
-import ContentSection from "~/components/ContentSection.astro";
+import ContentSection from "~/components/home/ContentSection.astro";
 import type { FeatureItem } from "~/types";
 
 const features: Array<FeatureItem> = [
-  {
-    title: "Design",
-    description:
-      "We help people create digital experiences their customers love.",
-    icon: "mdi:design",
-  },
   {
     title: "Web Development",
     description:
@@ -23,17 +17,24 @@ const features: Array<FeatureItem> = [
     icon: "carbon:application-mobile",
   },
   {
+    title: "Cloud Computing",
+    description:
+      "We help you to build products in cloud using serverless stack in AWS, Azure or Google Cloud.",
+    icon: "eos-icons:cloud-computing-outlined",
+  },
+  {
+    title: "Design",
+    description:
+      "We help people create digital experiences their customers love.",
+    icon: "mdi:design",
+  },
+  {
     title: "Design System",
     description:
       "We help you build reusable UI components with React and features that serve as an extension of your product that is modular and well-documented.",
     icon: "mdi:react",
   },
-  {
-    title: "Cloud Computing",
-    description:
-      "We help you to build products in cloud and also consult on migration from existing infrastructure to AWS, Azure or Google Cloud.",
-    icon: "eos-icons:cloud-computing-outlined",
-  },
+
   {
     title: "Sales CRM",
     description:
