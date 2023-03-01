@@ -1,0 +1,38 @@
+---
+import { SITE, BLOG } from "~/config.mjs";
+
+import PageLayout from "~/components/layout/PageLayout.astro";
+import BlogList from "~/components/blog/List.astro";
+import Headline from "~/components/blog/HeadLine.astro";
+import Pagination from "~/components/blog/Pagination.astro";
+
+import { fetchPosts } from "~/utils/blogUtils";
+import { BLOG_BASE } from "~/utils/permalinks";
+
+export async function getStaticPaths({ paginate }) {
+  if (BLOG?.disabled || BLOG?.list?.disabled) return [];
+  return paginate(await fetchPosts(), {
+    params: { blog: BLOG_BASE || undefined },
+    pageSize: BLOG.postsPerPage,
+  });
+}
+
+const { page } = Astro.props;
+console.log({ page });
+const currentPage = page.currentPage ?? 1;
+
+const meta = {
+  title: `Blog${currentPage > 1 ? ` — Page ${currentPage}` : ""}`,
+  description: SITE.description,
+  noindex: BLOG?.list?.noindex || currentPage > 1,
+  ogType: "blog",
+};
+---
+
+<PageLayout {meta}>
+  <section class="mx-auto max-w-6xl px-6 py-12 sm:px-6 sm:py-16 lg:py-20">
+    <Headline subtitle="">Incresco Blog</Headline>
+    <BlogList posts={page.data} />
+    <Pagination prevUrl={page.url.prev} nextUrl={page.url.next} />
+  </section>
+</PageLayout>

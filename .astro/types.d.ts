@@ -67,9 +67,30 @@ declare module 'astro:content' {
 
 	const entryMap: {
 		"post": {
-"1.md": {
-  id: "1.md",
-  slug: "1",
+"creating-a-simple-chatbot-in-salesforce-lightning-using-api-ai-in-less-than-60-mins.md": {
+  id: "creating-a-simple-chatbot-in-salesforce-lightning-using-api-ai-in-less-than-60-mins.md",
+  slug: "creating-a-simple-chatbot-in-salesforce-lightning-using-api-ai-in-less-than-60-mins",
+  body: string,
+  collection: "post",
+  data: InferEntrySchema<"post">
+},
+"flutter-scalable-folder-structure.md": {
+  id: "flutter-scalable-folder-structure.md",
+  slug: "flutter-scalable-folder-structure",
+  body: string,
+  collection: "post",
+  data: InferEntrySchema<"post">
+},
+"how-i-have-created-and-deployed-restful-api-using-python-and-heroku-step-by-step-guide.md": {
+  id: "how-i-have-created-and-deployed-restful-api-using-python-and-heroku-step-by-step-guide.md",
+  slug: "how-i-have-created-and-deployed-restful-api-using-python-and-heroku-step-by-step-guide",
+  body: string,
+  collection: "post",
+  data: InferEntrySchema<"post">
+},
+"javascript-frameworks-in-2022.md": {
+  id: "javascript-frameworks-in-2022.md",
+  slug: "javascript-frameworks-in-2022",
   body: string,
   collection: "post",
   data: InferEntrySchema<"post">

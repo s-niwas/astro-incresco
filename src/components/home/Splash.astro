@@ -19,49 +19,50 @@ import { Icon } from "astro-icon";
 
     <Lottie client:load />
 
-    <div
-      class="absolute bottom-16 flex w-full flex-col place-items-center justify-center text-center text-white md:bottom-4"
+    <a
+      href="#about"
+      class="In absolute bottom-16 z-20 flex w-full animate-moving-line flex-col place-items-center justify-center text-center text-white md:bottom-4"
     >
-      <Icon pack="mdi" name="rocket" class="h-8" />
+      <Icon pack="mdi" name="rocket" class="h-8 animate-moving-line" />
       <span>Dream to Digital</span>
-    </div>
+    </a>
   </div>
+</section>
 
-  <noscript>
-    <style>
-      #splash-bg-fallback {
-        display: block;
-      }
-    </style>
-  </noscript>
-
+<noscript>
   <style>
-    @keyframes float {
-      0% {
-        transform: translate3d(0, 0, 0);
-      }
-
-      100% {
-        transform: translate3d(0, 30px, 0);
-      }
-    }
-
-    #astronaut {
-      animation: float linear 2.5s infinite alternate;
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      #astronaut {
-        @apply animate-none;
-      }
-
-      :global(#starfield) {
-        @apply hidden;
-      }
-
-      #splash-bg-fallback {
-        @apply block;
-      }
+    #splash-bg-fallback {
+      display: block;
     }
   </style>
-</section>
+</noscript>
+
+<style>
+  @keyframes float {
+    0% {
+      transform: translate3d(0, 0, 0);
+    }
+
+    100% {
+      transform: translate3d(0, 30px, 0);
+    }
+  }
+
+  #astronaut {
+    animation: float linear 2.5s infinite alternate;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #astronaut {
+      @apply animate-none;
+    }
+
+    :global(#starfield) {
+      @apply hidden;
+    }
+
+    #splash-bg-fallback {
+      @apply block;
+    }
+  }
+</style>
