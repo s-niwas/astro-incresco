@@ -10,7 +10,7 @@ import { defineConfig } from "astro/config";
 import { readingTimeRemarkPlugin } from "./src/utils/frontmatter.mjs";
 
 export default defineConfig({
-  site: "https://incresco-astro.vercel.app",
+  site: "https://astro.increscotech.com",
   markdown: {
     remarkPlugins: [readingTimeRemarkPlugin],
   },
