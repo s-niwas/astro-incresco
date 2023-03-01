@@ -3,7 +3,7 @@ import defaultImage from "./assets/images/analyticedge.png";
 const CONFIG = {
   name: "Incresco",
 
-  origin: "https://incresco-astro.vercel.app",
+  origin: "https://www.increscotech.com",
   basePathname: "/",
   trailingSlash: false,
 
