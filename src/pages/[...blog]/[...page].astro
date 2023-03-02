@@ -20,12 +20,14 @@ export async function getStaticPaths({ paginate }) {
 const { page } = Astro.props;
 console.log({ page });
 const currentPage = page.currentPage ?? 1;
-
+const { generator, site } = Astro;
+const image = new URL("logo.png", site);
 const meta = {
   title: `Blog${currentPage > 1 ? ` — Page ${currentPage}` : ""}`,
   description: SITE.description,
   noindex: BLOG?.list?.noindex || currentPage > 1,
   ogType: "blog",
+  image,
 };
 ---
 

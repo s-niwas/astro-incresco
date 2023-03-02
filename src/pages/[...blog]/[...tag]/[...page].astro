@@ -35,6 +35,8 @@ export async function getStaticPaths({ paginate }) {
 }
 
 const { page, tag } = Astro.props;
+const { generator, site } = Astro;
+const image = new URL("logo.png", site);
 
 const currentPage = page.currentPage ?? 1;
 const meta = {
@@ -43,6 +45,7 @@ const meta = {
   }`,
   description: SITE.description,
   noindex: BLOG?.tag?.noindex,
+  image,
 };
 ---
 
