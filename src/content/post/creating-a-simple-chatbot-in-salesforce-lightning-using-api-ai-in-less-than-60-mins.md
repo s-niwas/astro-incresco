@@ -155,7 +155,3 @@ Steps to create an Utility Bar Component:
 4.  Select the ChatBot component and Ta-da.
 
 Your chatbot is ready, You can find the entire code base [here](https://github.com/parthi22/SFchatbot). Hope this helps!
-
-> # _Click❤ to recommend this to other Medium readers interested in AI, chatbots and development._
-
- <iframe src="https://medium.com/media/243670c9ffaa9e93541d1cf07faa2b05" frameborder=0></iframe>

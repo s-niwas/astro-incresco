@@ -10,12 +10,13 @@ import Technology from "~/components/home/Technology.astro";
 import PageLayout from "~/components/layout/PageLayout.astro";
 
 const { generator, site } = Astro;
-const image = new URL("social.jpg", site);
+const image = new URL("logo.svg", site);
 const meta = {
   title: "Incresco Technology Solutions - Dream to Digital",
   description:
     "Incresco is a leading web and mobile app development company that offers customized solutions to help businesses transform digitally. Our services include web development, mobile app development, UI/UX design, e-commerce development, and digital marketing. We use agile methodologies and innovative techniques to deliver high-quality solutions that are scalable, secure, and user-friendly. Partner with us to achieve your business objectives and drive growth in the digital world.",
   dontUseTitleTemplate: true,
+  image,
 };
 ---
 

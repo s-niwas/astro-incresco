@@ -6,6 +6,8 @@ const CONFIG = {
   origin: "https://www.increscotech.com",
   basePathname: "/",
   trailingSlash: false,
+  description:
+    "Incresco is a leading web and mobile app development company that offers customized solutions to help businesses transform digitally. Our services include web development, mobile app development, UI/UX design, e-commerce development, and digital marketing. We use agile methodologies and innovative techniques to deliver high-quality solutions that are scalable, secure, and user-friendly. Partner with us to achieve your business objectives and drive growth in the digital world.",
 
   defaultTheme: "system", // Values: "system" | "light" | "dark" | "light:only" | "dark:only"
 
@@ -19,7 +21,7 @@ const CONFIG = {
     timeZone: "UTC",
   }),
 
-  googleAnalyticsId: false, // or "G-XXXXXXXXXX",
+  googleAnalyticsId: "G-VLLQV67JW6", // or "G-XXXXXXXXXX",
   googleSiteVerificationId: "orcPxI47GSa-cRvY11tUe6iGg2IO_RPvnA1q95iEM3M",
 
   blog: {

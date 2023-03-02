@@ -20,10 +20,12 @@ In the last 10 years, website developers have seen quite a few libraries/framewo
 As per Statista, In 2021, the number of unique mobile internet users stood at 4.32 billion, indicating that over 90 percent of the [global internet population uses a mobile device to go online](https://www.statista.com/statistics/617136/digital-population-worldwide/). So it becomes more important to go on a mobile-first approach and most importantly the performance of the website becomes a key aspect both in terms of user experience as well as for search engine listing. There are quite a few libraries such as React, Angular, Vue, Svelte, etc rose to the need to build high-performing, responsive websites.
 
 In this blog, I will explain some of the popular JS libraries
+&nbsp;
+&nbsp;
 
-1.  **jQuery:**
+**1. jQuery:**
 
-It's one of the oldest and early problem-solver for browser interoperability issues. It is still being used but not as mainstream and is loved by many developers. Till 2021, jQuery was voted the most popular web framework until React replaced it. In my perspective jQuery is more of a utility library than a framework. Many big companies like Google, Microsoft, and IBM use jQuery along with other popular JS libraries in their websites. It has close to 56.3K stars on Github
+It's one of the oldest and early problem-solver for browser interoperability issues. It is still being used but not as mainstream and is loved by many developers. Till 2021, jQuery was voted the most popular web framework until React replaced it. In my perspective jQuery is more of a utility library than a framework. Many big companies like Google, Microsoft, and IBM use jQuery along with other popular JS libraries in their websites. It has close to 56.3K stars on Github.
 
 **2. Angular:**
 

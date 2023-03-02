@@ -1,7 +1,7 @@
 const defaultTheme = require("tailwindcss/defaultTheme");
 
 module.exports = {
-  content: ["./src/**/*.{astro,html,js,jsx,svelte,ts,tsx,vue}"],
+  content: ["./src/**/*.{astro,html,js,jsx,svelte,ts,tsx,vue,md}"],
   theme: {
     extend: {
       fontFamily: {
@@ -48,5 +48,8 @@ module.exports = {
   corePlugins: {
     fontSize: false,
   },
-  plugins: [require("tailwindcss-fluid-type")],
+  plugins: [
+    require("tailwindcss-fluid-type"),
+    require("@tailwindcss/typography"),
+  ],
 };
