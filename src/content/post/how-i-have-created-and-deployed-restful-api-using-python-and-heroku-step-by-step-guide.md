@@ -70,7 +70,40 @@ Let’s jump into code now and start implementing those verbs. I’m trying to c
 
 Let’s start by creating todo.py file which will have Todo class and will implement the GET and POST verb. I have placed the todo.py file under resources folder to keep it bit structured.
 
- <iframe src="https://medium.com/media/c373f234e24ab818bab62bb7d485530c" frameborder=0></iframe>
+<pre><code>from flask_restful import Resource
+
+todos = [
+  {
+    "id": 1,
+    "item": "Create sample app",
+    "status": "Completed"
+  },
+  {
+    "id": 2,
+    "item": "Deploy in Heroku",
+    "status": "Open"
+  },
+  {
+    "id": 3,
+    "item": "Publish",
+    "status": "Open"
+  }
+]
+
+class Todo(Resource):
+  def get(self, id):
+    for todo in todos:
+      if(id == todo["id"]):
+        return todo, 200
+    return "Item not found for the id: {}".format(id), 404
+
+  def put(self, id):
+    for todo in todos:
+      if(id == todo["id"]):
+        todo["item"] = request.form["data"]
+        todo["status"] = "Open"
+        return todo, 200
+    return "Item not found for the id: {}".format(id), 404</code></pre>
 
 If I break the above code,
 
@@ -82,7 +115,18 @@ Interesting things start from line number 21, The class Todo has GET and PUT met
 
 Let’s create app.py file in the root directory,
 
- <iframe src="https://medium.com/media/2659d8e2e4f688337765a2395cc2ef45" frameborder=0></iframe>
+ <pre><code>from flask import Flask
+from flask_restful import Api
+
+from resources.todo import Todo
+
+app = Flask(__name__)
+api = Api(app)
+
+api.add_resource(Todo, "/todo/<int:id>")
+
+if __name__ == "__main__":
+  app.run()</code></pre>
 
 So here I have imported the required packages, including the Todo class we just created. Also the usual stuffs like wiring up the app and the api.
 

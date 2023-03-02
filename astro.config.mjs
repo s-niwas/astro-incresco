@@ -7,16 +7,18 @@ import compress from "astro-compress";
 import sitemap from "@astrojs/sitemap";
 import minifyHtml from "astro-html-minifier";
 import { defineConfig } from "astro/config";
+import robotsTxt from "astro-robots-txt";
 import { readingTimeRemarkPlugin } from "./src/utils/frontmatter.mjs";
 
 export default defineConfig({
-  site: "https://www.increscotech.com",
+  site: "https://increscotech.com",
   markdown: {
     remarkPlugins: [readingTimeRemarkPlugin],
   },
   integrations: [
     tailwind(),
     sitemap(),
+    robotsTxt(),
     image({
       serviceEntryPoint: "@astrojs/image/sharp",
     }),
