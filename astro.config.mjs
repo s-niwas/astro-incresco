@@ -8,6 +8,8 @@ import sitemap from "@astrojs/sitemap";
 import minifyHtml from "astro-html-minifier";
 import { defineConfig } from "astro/config";
 import robotsTxt from "astro-robots-txt";
+import lottie from "astro-integration-lottie";
+
 import { readingTimeRemarkPlugin } from "./src/utils/frontmatter.mjs";
 
 export default defineConfig({
@@ -16,6 +18,7 @@ export default defineConfig({
     remarkPlugins: [readingTimeRemarkPlugin],
   },
   integrations: [
+    lottie(),
     tailwind(),
     sitemap(),
     robotsTxt(),

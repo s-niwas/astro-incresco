@@ -1,5 +1,3 @@
-import defaultImage from "./assets/images/analyticedge.png";
-
 const CONFIG = {
   name: "Incresco",
 
