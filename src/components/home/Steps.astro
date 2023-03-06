@@ -1,0 +1,47 @@
+---
+import { Icon } from "astro-icon";
+
+interface Item {
+  title?: string;
+  description?: string;
+  icon?: string;
+}
+
+export interface Props {
+  title?: string;
+  subtitle?: string;
+  highlight?: string;
+  items: Array<Item>;
+}
+
+const {
+  title = await Astro.slots.render("title"),
+  subtitle = await Astro.slots.render("subtitle"),
+  highlight,
+  items = [],
+} = Astro.props;
+---
+
+<section class="relative">
+  <div class="pointer-events-none absolute inset-0 mb-32" aria-hidden="true">
+  </div>
+  <div class="relative mx-auto -mb-12 max-w-7xl px-4 sm:px-6">
+    <div
+      class={`grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 my-12  items-stretch`}
+    >
+      {
+        items.map(({ title, description, icon }) => (
+          <div class="bg-offset relative flex flex-col rounded border border-transparent  p-6 shadow-lg transition hover:shadow-md dark:border-slate-800 ">
+            <div class="flex items-center">
+              <Icon name={icon} class="h-10 w-10" />
+              <div class="ml-4 text-xl font-bold">{title}</div>
+            </div>
+            {description && (
+              <p class="text-offset mt-4 text-sm" set:html={description} />
+            )}
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

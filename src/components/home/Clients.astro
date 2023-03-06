@@ -1,5 +1,6 @@
 ---
 import ContentSection from "~/components/home/ContentSection.astro";
+import Stats from "~/components/home/Stats.astro";
 import { Image } from "@astrojs/image/components";
 import { getShowcase } from "~/data/showcase";
 
@@ -7,6 +8,14 @@ const sites = await getShowcase();
 ---
 
 <ContentSection title="Customers around the world" id="clients">
+  <Stats
+    items={[
+      { name: "Clients", value: "15+" },
+      { name: "Projects", value: "30+" },
+      { name: "Components", value: "2K+" },
+      { name: "Lambdas", value: "5K+" },
+    ]}
+  />
   <article
     class="whitespace-no-wrap flex w-full max-w-6xl overflow-x-hidden bg-white"
   >

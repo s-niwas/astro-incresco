@@ -20,10 +20,10 @@ const {
 ---
 
 <script>
-  function animatedCounter(targer, time = 200, start = 0) {
+  function animatedCounter(target, time = 200, start = 0) {
     return {
       current: 0,
-      target: targer,
+      target: target,
       time: time,
       start: start,
       updatecounter: function () {
@@ -40,9 +40,7 @@ const {
     };
   }
 </script>
-<div
-  class="mx-auto max-w-6xl px-4 py-4 sm:px-6 md:py-16 md:px-24 lg:px-8 lg:py-20"
->
+<div class="mx-auto max-w-6xl px-4 py-2 sm:px-6 md:px-24 lg:px-8">
   {
     (title || subtitle || highlight) && (
       <div class="mb-10 max-w-xl sm:text-center md:mx-auto md:mb-12 lg:max-w-2xl">
