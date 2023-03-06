@@ -1,5 +1,6 @@
 ---
 import PageLayout from "~/components/layout/PageLayout.astro";
+import { Icon } from "astro-icon";
 
 const { generator, site } = Astro;
 const image = new URL("logo.png", site);
@@ -13,20 +14,21 @@ const meta = {
 ---
 
 <PageLayout sticky={false} meta={meta}>
-  <section class="flex h-5/6 items-center p-16">
+  <section class="flex h-5/6 items-center p-4">
     <div
-      class="container mx-auto my-8 flex h-full flex-col items-center justify-center px-5"
+      class="container mx-auto flex h-full flex-col items-center justify-center px-5"
     >
-      <div class="h-5/6 max-w-md text-center">
-        <h2 class="mb-8 font-bold text-9xl">
-          <span class="sr-only">Error</span>
-          <span class="text-primary">404</span>
-        </h2>
-        <p class="font-semibold text-3xl md:text-3xl">
-          Sorry, we couldn't find this page.
-        </p>
-        <p class="text-muted mt-4 mb-8 text-lg dark:text-slate-400">
-          But dont worry, you can find plenty of other things on our homepage.
+      <div class="h-5/6 w-full text-center">
+        <div class="h-32px w-32px mt-32 flex justify-center">
+          <Icon
+            name="clarity:success-standard-solid"
+            class="h-32"
+            color="primary"
+          />
+        </div>
+        <p class="font-semibold text-6xl md:text-4xl">Thank you!</p>
+        <p class="mt-4 mb-8 text-lg">
+          The form has been submitted successfully. We will reply to you soon!
         </p>
         <a rel="noopener noreferrer" href={site} class="btn m-4"
           >Back to homepage</a
