@@ -64,12 +64,12 @@ const {
       </div>
     )
   }
-  <div class="row-gap-8 grid grid-cols-2 gap-3 md:grid-cols-4">
+  <div class="row-gap-8 grid grid-cols-2 md:grid-cols-4">
     {
       items.map(({ name, value }) => (
-        <div class="mb-12  text-center md:mb-0 md:border-r md:last:border-none dark:md:border-slate-500">
+        <div class="mx-8 mb-12 text-center md:mb-0  md:last:border-none dark:md:border-slate-500">
           <div
-            class="font-heading text-primary  font-bold dark:text-blue-600 lg:text-5xl xl:text-6xl"
+            class="font-heading  font-bold  lg:text-5xl xl:text-6xl"
             data="animatedCounter(300, 200)"
             x-init="updatecounter"
             x-text="Math.round(current)"
