@@ -1,6 +1,6 @@
 ---
 import { SITE, BLOG } from "~/config.mjs";
-
+import LottieAnimation from "astro-integration-lottie/Lottie.astro";
 import PageLayout from "~/components/layout/PageLayout.astro";
 import BlogList from "~/components/blog/List.astro";
 import Headline from "~/components/blog/HeadLine.astro";
@@ -32,7 +32,12 @@ const meta = {
 ---
 
 <PageLayout {meta}>
-  <section class="mx-auto max-w-6xl px-6 py-12 sm:px-6 sm:py-16 lg:py-20">
+  <section class="mx-auto max-w-6xl px-6 py-16 sm:px-6 sm:py-16 lg:py-20">
+    <!-- <div class="flex justify-center">
+      <div class="flex h-64 w-64 flex-col">
+        <LottieAnimation src="/assets/blog.json" autoplay="visible" />
+      </div>
+    </div> -->
     <Headline subtitle="">Incresco Insider</Headline>
     <BlogList posts={page.data} />
     <Pagination prevUrl={page.url.prev} nextUrl={page.url.next} />
