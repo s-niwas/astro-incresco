@@ -95,6 +95,13 @@ declare module 'astro:content' {
   collection: "post",
   data: InferEntrySchema<"post">
 },
+"planet-sim-wins-the-proptech-mobile-app-of-the-year-2023.md": {
+  id: "planet-sim-wins-the-proptech-mobile-app-of-the-year-2023.md",
+  slug: "planet-sim-wins-the-proptech-mobile-app-of-the-year-2023",
+  body: string,
+  collection: "post",
+  data: InferEntrySchema<"post">
+},
 },
 
 	};
