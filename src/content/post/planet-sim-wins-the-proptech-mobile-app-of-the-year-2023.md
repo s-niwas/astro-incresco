@@ -2,7 +2,7 @@
 publishDate: 2023-03-13T00:00:00Z
 title: Planet SIM wins the Proptech Mobile App of the Year 2023!
 description: Planet's digital platform and proptech app, PlanetSIM, won the 5th edition of India's national "2023 Proptech Excellence Conclave" competition, taking home the Proptech Mobile App of the Year Award. The jury evaluated the most well-known digital platforms in the industry and selected Planet's own as the best mobile app for proptech of the year. The jury's evaluation was sponsored by Realty+, the most well-known real estate publication in the subcontinent.
-excerpt: From a simple late evening call, to winning the coveted Proptech Mobile App of the Year Award - this is the story of how PlanetSIM, a revolutionary mobile app designed to improve the quality of life of residents, management committees, facility managers and staff, came to life. It all started with a partnership between Planet Smart City and Incresco, and what resulted is nothing short of extraordinary. Discover how this fully integrated IoT solution is transforming society management, enhancing safety and efficiency, and promoting sustainability, one step at a time.
+excerpt: From a simple late evening call, to winning the coveted Proptech Mobile App of the Year Award - this is the story of how PlanetSIM, a revolutionary mobile app designed to improve the quality of life of residents, management committees, facility managers and staff, came to life. It all started with a partnership between Planet Smart City and Incresco, and what resulted is nothing short of extraordinary. 
 image: https://increscotech.com/blogimages/planet-sim-wins-the-proptech-mobile-app-of-the-year-2023.jpeg
 category: Success Stories
 tags:
