@@ -81,6 +81,13 @@ declare module 'astro:content' {
   collection: "post",
   data: InferEntrySchema<"post">
 },
+"generating-a-style-dictionary-from-a-design-system-palette-using-the-adobe-XD-extension-in-VSCode.md": {
+  id: "generating-a-style-dictionary-from-a-design-system-palette-using-the-adobe-XD-extension-in-VSCode.md",
+  slug: "generating-a-style-dictionary-from-a-design-system-palette-using-the-adobe-xd-extension-in-vscode",
+  body: string,
+  collection: "post",
+  data: InferEntrySchema<"post">
+},
 "how-i-have-created-and-deployed-restful-api-using-python-and-heroku-step-by-step-guide.md": {
   id: "how-i-have-created-and-deployed-restful-api-using-python-and-heroku-step-by-step-guide.md",
   slug: "how-i-have-created-and-deployed-restful-api-using-python-and-heroku-step-by-step-guide",
