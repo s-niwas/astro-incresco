@@ -3,7 +3,7 @@ publishDate: 2023-02-26T00:00:00Z
 title: Style Dictionary from a Design System Palette (DSP) in VSCode - Step by Step guide
 description: "Generating a Style Dictionary from a Design System Palette (DSP) using the Adobe XD Extension in VSCode for react, web, react native, flutter, android, ios"
 excerpt: "In this article, we will see how to import style dictionary from a design system palette using Adobe XD extension in Visual studio Code."
-image: https://increscotech.com/blogimages/generating-a-style-dictionary-from-a-design-system-palette-using-the-adobe-XD-extension-in-VSCode-1.png
+image: https://increscotech.com/blogimages/generating-a-style-dictionary-from-a-design-system-palette-using-the-adobe-XD-extension-in-VSCode-12.png
 category: Tutorials
 tags:
   - React
