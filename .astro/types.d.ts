@@ -67,6 +67,13 @@ declare module 'astro:content' {
 
 	const entryMap: {
 		"post": {
+"animating-the-web-with-lottie-best-practices-for-optimization.md": {
+  id: "animating-the-web-with-lottie-best-practices-for-optimization.md",
+  slug: "animating-the-web-with-lottie-best-practices-for-optimization",
+  body: string,
+  collection: "post",
+  data: InferEntrySchema<"post">
+},
 "creating-a-simple-chatbot-in-salesforce-lightning-using-api-ai-in-less-than-60-mins.md": {
   id: "creating-a-simple-chatbot-in-salesforce-lightning-using-api-ai-in-less-than-60-mins.md",
   slug: "creating-a-simple-chatbot-in-salesforce-lightning-using-api-ai-in-less-than-60-mins",
