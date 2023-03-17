@@ -14,6 +14,16 @@ tags:
   - Adobe XD
 ---
 
+As a startup company grew and expanded their product line, their design team found it increasingly challenging to maintain consistency in their design elements such as colors, typography, and spacing. The team knew they needed to establish a design system to ensure consistency across their product line, but they were unsure how to get started.
+
+That’s when the team discovered the power of creating a style dictionary from a Design System Palette (DSP) using the Adobe XD Extension in VSCode. By creating a DSP, they were able to easily establish a design system and enforce consistency across their product line. They were able to share the design system across the team, ensuring that everyone was using the same design elements and styles throughout the company’s products.
+
+Creating a style dictionary from a DSP allowed the team to easily update and maintain the design system over time. They were able to make changes to the design system and easily propagate those changes throughout their product line, ensuring that everything remained consistent and cohesive.
+
+In the end, the design team was able to establish a successful design system, which helped them scale their product line and improve their brand identity. By using a style dictionary from a DSP, the team was able to save time, reduce errors, and ensure that their products remained consistent and cohesive throughout their growth.
+
+This guide provides step-by-step instructions for generating a style dictionary from a Design System Palette (DSP) using the Adobe XD Extension in VSCode.
+
 1.Explore [Material Theme Builder](https://m3.material.io/theme-builder#/custom) to Create Your Own DSP Tokens
 
 ![](https://increscotech.com/blogimages/generating-a-style-dictionary-from-a-design-system-palette-using-the-adobe-XD-extension-in-VSCode-1.png)
