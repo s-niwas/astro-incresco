@@ -1,0 +1,24 @@
+---
+import { Icon } from "astro-icon";
+import HorizontalList from "~/components/blog/HorizontalList.astro";
+import HeadLine from "~/components/blog/HeadLine.astro";
+
+import { fetchPosts } from "~/utils/blogUtils";
+import { BLOG_BASE } from "~/utils/permalinks";
+
+const data = await fetchPosts();
+---
+
+<section
+  class="mx-auto flex max-w-6xl flex-col items-center py-16 sm:py-16 lg:py-20"
+>
+  <HeadLine subtitle="">Incresco Insiders</HeadLine>
+  <HorizontalList posts={data} />
+  <a
+    href="/blog"
+    class="hover:border-color-red-500 text-md z-50 flex w-full flex-row place-items-center justify-center text-center no-underline duration-300 hover:-translate-y-1 hover:scale-110 xl:bottom-4"
+  >
+    <span>More articles</span>
+    <Icon name="ic:round-keyboard-double-arrow-right" class="h-8" />
+  </a>
+</section>

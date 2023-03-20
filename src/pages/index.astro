@@ -8,6 +8,7 @@ import ContactForm from "~/components/home/ContactForm.astro";
 import Splash from "~/components/home/Splash.astro";
 import Technology from "~/components/home/Technology.astro";
 import PageLayout from "~/components/layout/PageLayout.astro";
+import HorizontalBlogList from "~/components/home/HorizontalBlogList.astro";
 
 const { generator, site } = Astro;
 const image = new URL("logo.png", site);
@@ -28,5 +29,7 @@ const meta = {
     <Technology />
     <Clients />
     <ContactForm />
+
+    <HorizontalBlogList />
   </div>
 </PageLayout>

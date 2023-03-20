@@ -1,0 +1,20 @@
+---
+import HorizontalListItem from "~/components/blog/HorizontalListItem.astro";
+import type { Post } from "~/types";
+
+export interface Props {
+  posts: Array<Post>;
+}
+
+const { posts } = Astro.props;
+---
+
+<ul class="grid max-w-6xl grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+  {
+    posts.slice(0, 3).map((post) => (
+      <li data-aos="fade-up">
+        <HorizontalListItem post={post} />
+      </li>
+    ))
+  }
+</ul>
