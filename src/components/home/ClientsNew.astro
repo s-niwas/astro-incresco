@@ -1,0 +1,35 @@
+---
+import { Sprite } from "astro-icon";
+import { Image } from "@astrojs/image/components";
+import Marquee from "~/components/common/Marquee.astro";
+import { getShowcase } from "~/data/showcase";
+
+const sites = await getShowcase();
+
+export type Props = {
+  logos: Array<{
+    icon?: string;
+    alt: string;
+    href?: string;
+  }>;
+};
+---
+
+<Marquee>
+  <ul class="flex gap-2 pr-2">
+    {
+      sites.map((site) => (
+        <div class="flex w-1/3 flex-wrap justify-center md:h-32 md:w-1/4">
+          <div class="p-4 md:w-1/2 md:p-1">
+            <Image
+              src={site.image}
+              alt={site.title}
+              alt="gallery"
+              class="block h-full w-full rounded-lg bg-cover object-contain "
+            />
+          </div>
+        </div>
+      ))
+    }
+  </ul>
+</Marquee>
