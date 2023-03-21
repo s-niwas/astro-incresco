@@ -116,6 +116,13 @@ declare module 'astro:content' {
   collection: "post",
   data: InferEntrySchema<"post">
 },
+"solving-the-cors-onundrum:-an-in-depth-look-at-cross-origin-resource-sharing.md": {
+  id: "solving-the-cors-onundrum:-an-in-depth-look-at-cross-origin-resource-sharing.md",
+  slug: "solving-the-cors-onundrum-an-in-depth-look-at-cross-origin-resource-sharing",
+  body: string,
+  collection: "post",
+  data: InferEntrySchema<"post">
+},
 },
 
 	};
