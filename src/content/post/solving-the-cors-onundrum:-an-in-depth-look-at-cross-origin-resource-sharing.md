@@ -3,7 +3,7 @@ publishDate: 2023-03-15T00:00:00Z
 title: "Solving the CORS Conundrum : An In-Depth Look at Cross-Origin Resource Sharing"
 description: Cross-Origin Resource Sharing (CORS) is a crucial aspect of modern web development, but it can also be a source of frustration for developers. This comprehensive guide will provide you with a deep understanding of CORS, including its security implications, its necessity, and how to configure it in API Gateway using the Serverless Framework. By understanding the nuances of CORS, developers can enable secure, efficient cross-domain requests and ensure a seamless user experience.
 excerpt: Cross-Origin Resource Sharing (CORS) is a crucial aspect of modern web development, but it can also be a source of frustration for developers. This article offers a comprehensive overview of CORS, including its various types, its security implications, and practical instructions for configuring it in API Gateway using the Serverless Framework.
-image: solving-the-cors-onundrum:-an-in-depth-look-at-cross-origin-resource-sharing-1.png
+image: https://increscotech.com/blogimages/solving-the-cors-onundrum:-an-in-depth-look-at-cross-origin-resource-sharing-1.png
 category: Tutorials
 tags:
   - CORS
@@ -43,7 +43,7 @@ Let's break it down,
 
 Cross-Origin Resource Sharing (CORS) is a mechanism that enables web browsers to securely access resources from a server that is located on a different domain. When a web page makes a request to a server that is not in the same domain as the page, the browser typically blocks the request to prevent cross-site scripting (XSS) attacks. CORS provides a way for web developers to specify which domains are allowed to access the resources on their server and under what circumstances.
 
-  <img src="https://increscotech.com/blogimages/solving-the-cors-onundrum:-an-in-depth-look-at-cross-origin-resource-sharing-2.png" alt="CORS request"/>
+![](https://increscotech.com/blogimages/solving-the-cors-onundrum:-an-in-depth-look-at-cross-origin-resource-sharing-2.png)
 
 ## Why CORS is needed ?
 
@@ -68,7 +68,7 @@ Not all the requests created from the browser are equal, there are several types
 2. **Preflighted Requests:**
    If a request does not meet the criteria for a simple request, it is considered a "preflighted request". Preflighted requests are sent using the OPTIONS method and include an additional set of headers that describe the actual request that will be made. The server must respond with an Access-Control-Allow-Origin header, as well as an Access-Control-Allow-Methods header that lists the HTTP methods that are allowed for the requested resource.
 
-     <img src="https://increscotech.com/blogimages/solving-the-cors-onundrum:-an-in-depth-look-at-cross-origin-resource-sharing-3.png" alt="Preflight request"/>
+   ![](https://increscotech.com/blogimages/solving-the-cors-onundrum:-an-in-depth-look-at-cross-origin-resource-sharing-3.png)
 
 3. **Credentialed Requests:**
    By default, CORS requests are not sent with cookies or authentication headers. However, if a request needs to include cookies or authentication information, it is considered a "credentialed request". To make a credentialed request, the client must set the withCredentials property to true on the XMLHttpRequest object or fetch() request. The server must respond with an Access-Control-Allow-Credentials header that explicitly allows the sending of credentials.
@@ -83,30 +83,6 @@ The serverless.yaml setting configurations for a simple helloWorld function are 
 
 ![](https://increscotech.com/blogimages/solving-the-cors-onundrum:-an-in-depth-look-at-cross-origin-resource-sharing-4.png)
 
-```
-service: corssettings
-frameworkVersion: '3.0'
-
-provider:
-  name: aws
-  runtime: nodejs16.x
-functions:
-  helloworld:
-    name: helloWorld
-    handler: src/handlers/helloworld.handler
-    events:
-      - http:
-          method: get
-          path: /helloworld
-          cors:
-            origins:
-              - 'https://*.increscotech.com'
-              - 'http://localhost:3000'
-            headers:
-              - accesstoken
-            allowCredentials: true
-```
-
 Once this function is deployed in the AWS, we can see the lambda function created along with the API gateway where a GET endpoint for the same function is exposed via the API gateway.
 
 **_Configuration details:_**
@@ -117,19 +93,12 @@ In the above configuration,
   `method: get` indicates that the allowed HTTP methods are OPTIONS and GET. OPTIONS method will be allowed by default.
 - **cors** section - has the settings related to the CORS communications.
 
-  ```
-  origins:
-      - 'https://*.increscotech.com'
-      - 'http://localhost:3000'
-  ```
+  ![](https://increscotech.com/blogimages/solving-the-cors-onundrum:-an-in-depth-look-at-cross-origin-resource-sharing-5.png)
 
   - https://\*.increscotech.com - indicates that the request origin can be from any of the subdomains of increscotech.com
   - http://localhost:3000 - indicates only localhost:3000 is allowed with http scheme
 
-  ```
-  headers:
-      - accesstoken
-  ```
+  ![](https://increscotech.com/blogimages/solving-the-cors-onundrum:-an-in-depth-look-at-cross-origin-resource-sharing-6.png)
 
   The **accesstoken** under **headers** indicates that only this custom header is allowed in the requests.
 
@@ -141,35 +110,7 @@ All these settings are used in the response for a preflight request. Any mismatc
 
 As the lambda function will be exposed through a lambda proxy, the response would be passed across from the API Gateway as a passthrough. Therefore our lambda function needs to return the Access-Control-Allow-Origin value when there is an actual request. Our lambda code would have the following logic to take care of this.
 
-```JavaScript:
-export const handler = async (event) => {
-    const requestOrigin = event.headers.origin;
-    const response = {
-        statusCode: 200,
-        headers: {
-            "Access-Control-Allow-Headers" : "Content-Type",
-            "Access-Control-Allow-Origin": getAllowedOrigin(requestOrigin),
-            "Access-Control-Allow-Methods": "OPTIONS,GET",
-            "Access-Control-Allow-Credential": true
-        },
-        body: JSON.stringify('Hello World!'),
-    };
-    return response;
-};
-
-const allowedOrigins = ['https://*.increscotech.com','http://localhost:*'];
-
-const getAllowedOrigin = (requestOrigin) => {
-  const [protocol, domain] = requestOrigin.split('://');
-  const [hostname, port = ''] = domain.split(':');
-  const originForValidation = `${protocol}://${
-    hostname === 'localhost'
-      ? hostname
-      : `*.${hostname.substring(hostname.indexOf('.'))}`
-  }${port ? ':3000' : ''}`;
-  return allowedOrigins.includes(originForValidation) ? requestOrigin : '';
-};
-```
+![](https://increscotech.com/blogimages/solving-the-cors-onundrum:-an-in-depth-look-at-cross-origin-resource-sharing-7.png)
 
 ## Summary:
 
