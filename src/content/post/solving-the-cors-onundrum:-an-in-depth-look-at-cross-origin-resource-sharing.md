@@ -12,6 +12,9 @@ tags:
   - Serverless Framework
   - Security
   - Cross origin requests
+author: Premsankar Subramaniyam
+authorRole: Senior Engineering Manager
+authorAvatar: https://media.licdn.com/dms/image/D5603AQFXFbsrhEdrBQ/profile-displayphoto-shrink_400_400/0/1679907006012?e=1685577600&v=beta&t=NVevuxrLl-Bmkqe5mPnjXI_W44OzJGOjcS93VXtC_OU
 ---
 
 <p align="center">
