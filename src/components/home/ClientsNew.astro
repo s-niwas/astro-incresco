@@ -16,7 +16,7 @@ export type Props = {
 ---
 
 <Marquee>
-  <ul class="flex gap-2 pr-2">
+  <div class="flex gap-2 pr-2">
     {
       sites.map((site) => (
         <div class="flex w-1/3 flex-wrap justify-center md:h-32 md:w-1/4">
@@ -31,5 +31,5 @@ export type Props = {
         </div>
       ))
     }
-  </ul>
+  </div>
 </Marquee>
