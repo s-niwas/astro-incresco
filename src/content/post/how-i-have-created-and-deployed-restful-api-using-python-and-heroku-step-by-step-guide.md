@@ -10,6 +10,9 @@ tags:
   - python
   - heroku
   - deployment
+author: Parthiban Sudhaman
+authorRole: CEO
+authorAvatar: https://media.licdn.com/dms/image/C5603AQGFRGF7elhX_A/profile-displayphoto-shrink_800_800/0/1617151081605?e=1685577600&v=beta&t=gtKAwhp87sMtZtAl1wOz2qF03R41bhjYdagLTTXyY2A
 ---
 
 ![](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*PiWBbp4H76ITuEMRW6EyrQ.jpeg)

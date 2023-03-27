@@ -15,6 +15,8 @@ const post = defineCollection({
     category: z.string().optional(),
     tags: z.array(z.string()).optional(),
     author: z.string().optional(),
+    authorRole: z.string().optional(),
+    authorAvatar: z.string().optional(),
   }),
 });
 

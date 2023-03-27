@@ -45,6 +45,8 @@ export interface Post {
   category?: string;
   tags?: Array<string>;
   author?: string;
+  authorRole?: string;
+  authorAvatar?: string;
 
   Content: unknown;
   content?: string;

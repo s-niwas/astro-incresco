@@ -13,6 +13,9 @@ tags:
   - Proptech
   - Realty
   - Sustainable
+author: Parthiban Sudhaman
+authorRole: CEO
+authorAvatar: https://media.licdn.com/dms/image/C5603AQGFRGF7elhX_A/profile-displayphoto-shrink_800_800/0/1617151081605?e=1685577600&v=beta&t=gtKAwhp87sMtZtAl1wOz2qF03R41bhjYdagLTTXyY2A
 ---
 
 <p align="center">
@@ -24,6 +27,7 @@ Little did we know that this partnership when it started couple of years ago wou
 Fast forward to today, and we are thrilled to announce that the PlanetSIM has won the coveted Proptech Mobile App of the Year Award! It's a true testament to the power of collaboration, innovation, and pushing boundaries in pursuit of a common goal.
 <br />
 <br />
+
 # How it all started
 
 It was one the Weekday, late in the evening, Thiru (who was Head of Digital at Planet Smart City back then) called to discuss about building a mobile app for Planet Smart City, which aims to improve the quality of life of Residents, Management Committee members, Facility Managers and Staff by integrating sustainable solutions, enabled through smart and easy-to-use technology.

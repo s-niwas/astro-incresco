@@ -22,7 +22,7 @@ const { post, url } = Astro.props;
   <article>
     <header class={post.image ? "" : ""}>
       <div
-        class="mx-auto mt-0 mb-2 flex flex-col justify-between px-4 sm:flex-row sm:items-center sm:px-6"
+        class="mx-auto mt-0 mb-2 flex flex-col justify-between px-4 text-sm sm:flex-row sm:items-center sm:px-6"
       >
         <p>
           <Icon
@@ -49,6 +49,25 @@ const { post, url } = Astro.props;
           {post.readingTime && <> &#9679; {post.readingTime} min read</>}
         </p>
       </div>
+      {
+        post.author && (
+          <address class="mb-6 flex items-center px-4 not-italic">
+            <div class="mr-3 inline-flex items-center text-sm">
+              <img
+                class="mr-4 h-16 w-16 rounded-full"
+                src={post.authorAvatar}
+                alt={post.author}
+              />
+              <div>
+                <a href="#" rel="author" class="text-xl font-bold">
+                  {post.author}
+                </a>
+                <p class="text-base font-light">{post.authorRole}</p>
+              </div>
+            </div>
+          </address>
+        )
+      }
       <h1
         class="leading-tighter font-heading mx-auto px-4 font-bold tracking-tighter text-4xl sm:px-6 md:text-5xl"
       >

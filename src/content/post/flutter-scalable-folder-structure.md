@@ -9,6 +9,9 @@ tags:
   - flutter
   - scalable
   - mobile app development
+author: Parthiban Sudhaman
+authorRole: CEO
+authorAvatar: https://media.licdn.com/dms/image/C5603AQGFRGF7elhX_A/profile-displayphoto-shrink_800_800/0/1617151081605?e=1685577600&v=beta&t=gtKAwhp87sMtZtAl1wOz2qF03R41bhjYdagLTTXyY2A
 ---
 
 ![](https://cdn-images-1.medium.com/max/3200/0*O3-PzzXr2-TLmC4u)
