@@ -16,8 +16,6 @@ authorRole: Lead Developer
 authorAvatar: https://media.licdn.com/dms/image/C5603AQHk0b-ea3ENLA/profile-displayphoto-shrink_400_400/0/1635929694279?e=1685577600&v=beta&t=cgz7t06YY04xwnp0S13hUv6vHXgt7MSoYexu4DmF2G8
 ---
 
-## Optimizing Lodash in Next.js with webpack and babel-plugin-lodash
-
 ![](https://increscotech.com/blogimages/optimizing-lodash-in-next-js-with-webpack-and-babel-plugin-lodash-1.png)
 
 Lodash is a popular JavaScript library that provides a rich set of utility functions for common programming tasks, such as manipulating arrays and objects, working with dates and times, and performing mathematical operations. In a Next.js project, it’s important to optimize the way Lodash is included to reduce the size of the bundle and improve performance.
