@@ -9,8 +9,9 @@ tags:
   - Next.js
   - Lodash
   - Optimization
-  - Tutorial
+  - Performance
   - Babel
+  - Webpack
 author: Yokesh
 authorRole: Lead Developer
 authorAvatar: https://media.licdn.com/dms/image/C5603AQHk0b-ea3ENLA/profile-displayphoto-shrink_400_400/0/1635929694279?e=1685577600&v=beta&t=cgz7t06YY04xwnp0S13hUv6vHXgt7MSoYexu4DmF2G8

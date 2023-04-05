@@ -7,6 +7,7 @@ image: https://increscotech.com/blogimages/animating-the-web-with-lottie-best-pr
 category: Tutorials
 tags:
   - Optimization
+  - Performance
   - Lottie
   - React
   - Animation
