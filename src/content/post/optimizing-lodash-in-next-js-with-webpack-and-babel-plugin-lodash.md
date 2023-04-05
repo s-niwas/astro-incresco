@@ -48,15 +48,15 @@ Next, you will need to create a next.config.js file in the root of your project 
 
 Here’s an example of how you might do this in a Next.js project:
 
-![](https://increscotech.com/blogimages/optimizing-lodash-in-next-js-with-webpack-and-babel-plugin-lodash-2.png)
+![](https://increscotech.com/blogimages/optimizing-lodash-in-next-js-with-webpack-and-babel-plugin-lodash-2.webp)
 
 By default, lodash-webpack-plugin will include all of the functions in the Lodash library in the bundle. If you only want to include a subset of the functions, you can pass an options object to the plugin with a shorthands property set to false and a cloning property set to false. This will exclude the shorthand and cloning functions from the bundle:
 
-![](https://increscotech.com/blogimages/optimizing-lodash-in-next-js-with-webpack-and-babel-plugin-lodash-3.png)
+![](https://increscotech.com/blogimages/optimizing-lodash-in-next-js-with-webpack-and-babel-plugin-lodash-3.webp)
 
 You can also use the modularize property to specify which functions should be included in the bundle. For example, to include only the map and filter functions, you could do the following:
 
-![](https://increscotech.com/blogimages/optimizing-lodash-in-next-js-with-webpack-and-babel-plugin-lodash-4.png)
+![](https://increscotech.com/blogimages/optimizing-lodash-in-next-js-with-webpack-and-babel-plugin-lodash-4.webp)
 
 ## babel-plugin-lodash
 
@@ -78,12 +78,12 @@ Next, you will need to configure Babel to use the babel-plugin-lodash plugin. In
 
 Here’s an example of how you might configure babel-plugin-lodash in a Next.js project:
 
-![](https://increscotech.com/blogimages/optimizing-lodash-in-next-js-with-webpack-and-babel-plugin-lodash-5.png)
+![](https://increscotech.com/blogimages/optimizing-lodash-in-next-js-with-webpack-and-babel-plugin-lodash-5.webp)
 
 By default, babel-plugin-lodash will replace all of the Lodash functions in your code with equivalent, native JavaScript functions. If you only want to replace certain functions, you can pass an options object to the plugin with a lodash property set to an array of the functions you want to replace.
 
 For example, to replace only the map and filter functions, you could do the following:
 
-![](https://increscotech.com/blogimages/optimizing-lodash-in-next-js-with-webpack-and-babel-plugin-lodash-6.png)
+![](https://increscotech.com/blogimages/optimizing-lodash-in-next-js-with-webpack-and-babel-plugin-lodash-6.webp)
 
 In conclusion, Lodash is a popular JavaScript library that provides utility functions for common programming tasks. When using Lodash in a Next.js project, it’s important to consider strategies for optimizing its inclusion in the bundle, including using tools like webpack, rollup, lodash-webpack-plugin, babel-plugin-lodash, and npm/yarn. Lodash-webpack-plugin can help optimize the way Lodash is included in the bundle, while babel-plugin-lodash can replace certain Lodash functions with equivalent, smaller, native JavaScript functions. By implementing these strategies, developers can improve the performance and reduce the size of their Next.js applications.
