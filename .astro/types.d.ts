@@ -67,71 +67,78 @@ declare module 'astro:content' {
 
 	const entryMap: {
 		"post": {
-"animating-the-web-with-lottie-best-practices-for-optimization.md": {
-  id: "animating-the-web-with-lottie-best-practices-for-optimization.md",
+"animating-the-web-with-lottie-best-practices-for-optimization.mdx": {
+  id: "animating-the-web-with-lottie-best-practices-for-optimization.mdx",
   slug: "animating-the-web-with-lottie-best-practices-for-optimization",
   body: string,
   collection: "post",
   data: InferEntrySchema<"post">
 },
-"creating-a-simple-chatbot-in-salesforce-lightning-using-api-ai-in-less-than-60-mins.md": {
-  id: "creating-a-simple-chatbot-in-salesforce-lightning-using-api-ai-in-less-than-60-mins.md",
+"creating-a-simple-chatbot-in-salesforce-lightning-using-api-ai-in-less-than-60-mins.mdx": {
+  id: "creating-a-simple-chatbot-in-salesforce-lightning-using-api-ai-in-less-than-60-mins.mdx",
   slug: "creating-a-simple-chatbot-in-salesforce-lightning-using-api-ai-in-less-than-60-mins",
   body: string,
   collection: "post",
   data: InferEntrySchema<"post">
 },
-"empowering-teams-through-delegation-a-guide-to-balancing-leadership-and-autonomy.md": {
-  id: "empowering-teams-through-delegation-a-guide-to-balancing-leadership-and-autonomy.md",
-  slug: "empowering-teams-through-delegation-a-guide-to-balancing-leadership-and-autonomy",
+"delegation-and-empowerment-balancing-leadership-for-team-success.mdx": {
+  id: "delegation-and-empowerment-balancing-leadership-for-team-success.mdx",
+  slug: "delegation-and-empowerment-balancing-leadership-for-team-success",
   body: string,
   collection: "post",
   data: InferEntrySchema<"post">
 },
-"flutter-scalable-folder-structure.md": {
-  id: "flutter-scalable-folder-structure.md",
+"flutter-scalable-folder-structure.mdx": {
+  id: "flutter-scalable-folder-structure.mdx",
   slug: "flutter-scalable-folder-structure",
   body: string,
   collection: "post",
   data: InferEntrySchema<"post">
 },
-"generating-a-style-dictionary-from-a-design-system-palette-using-the-adobe-XD-extension-in-VSCode.md": {
-  id: "generating-a-style-dictionary-from-a-design-system-palette-using-the-adobe-XD-extension-in-VSCode.md",
+"generating-a-style-dictionary-from-a-design-system-palette-using-the-adobe-XD-extension-in-VSCode.mdx": {
+  id: "generating-a-style-dictionary-from-a-design-system-palette-using-the-adobe-XD-extension-in-VSCode.mdx",
   slug: "generating-a-style-dictionary-from-a-design-system-palette-using-the-adobe-xd-extension-in-vscode",
   body: string,
   collection: "post",
   data: InferEntrySchema<"post">
 },
-"how-i-have-created-and-deployed-restful-api-using-python-and-heroku-step-by-step-guide.md": {
-  id: "how-i-have-created-and-deployed-restful-api-using-python-and-heroku-step-by-step-guide.md",
+"how-i-have-created-and-deployed-restful-api-using-python-and-heroku-step-by-step-guide.mdx": {
+  id: "how-i-have-created-and-deployed-restful-api-using-python-and-heroku-step-by-step-guide.mdx",
   slug: "how-i-have-created-and-deployed-restful-api-using-python-and-heroku-step-by-step-guide",
   body: string,
   collection: "post",
   data: InferEntrySchema<"post">
 },
-"javascript-frameworks-in-2022.md": {
-  id: "javascript-frameworks-in-2022.md",
+"javascript-frameworks-in-2022.mdx": {
+  id: "javascript-frameworks-in-2022.mdx",
   slug: "javascript-frameworks-in-2022",
   body: string,
   collection: "post",
   data: InferEntrySchema<"post">
 },
-"optimizing-lodash-in-next-js-with-webpack-and-babel-plugin-lodash.md": {
-  id: "optimizing-lodash-in-next-js-with-webpack-and-babel-plugin-lodash.md",
+"navigating-feedback-a-new-managers-guide-to-effective-communication-and-growth.md": {
+  id: "navigating-feedback-a-new-managers-guide-to-effective-communication-and-growth.md",
+  slug: "navigating-feedback-a-new-managers-guide-to-effective-communication-and-growth",
+  body: string,
+  collection: "post",
+  data: InferEntrySchema<"post">
+},
+"optimizing-lodash-in-next-js-with-webpack-and-babel-plugin-lodash.mdx": {
+  id: "optimizing-lodash-in-next-js-with-webpack-and-babel-plugin-lodash.mdx",
   slug: "optimizing-lodash-in-next-js-with-webpack-and-babel-plugin-lodash",
   body: string,
   collection: "post",
   data: InferEntrySchema<"post">
 },
-"planet-sim-wins-the-proptech-mobile-app-of-the-year-2023.md": {
-  id: "planet-sim-wins-the-proptech-mobile-app-of-the-year-2023.md",
+"planet-sim-wins-the-proptech-mobile-app-of-the-year-2023.mdx": {
+  id: "planet-sim-wins-the-proptech-mobile-app-of-the-year-2023.mdx",
   slug: "planet-sim-wins-the-proptech-mobile-app-of-the-year-2023",
   body: string,
   collection: "post",
   data: InferEntrySchema<"post">
 },
-"solving-the-cors-onundrum:-an-in-depth-look-at-cross-origin-resource-sharing.md": {
-  id: "solving-the-cors-onundrum:-an-in-depth-look-at-cross-origin-resource-sharing.md",
+"solving-the-cors-onundrum:-an-in-depth-look-at-cross-origin-resource-sharing.mdx": {
+  id: "solving-the-cors-onundrum:-an-in-depth-look-at-cross-origin-resource-sharing.mdx",
   slug: "solving-the-cors-onundrum-an-in-depth-look-at-cross-origin-resource-sharing",
   body: string,
   collection: "post",

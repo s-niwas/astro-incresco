@@ -16,6 +16,8 @@ authorAvatar: https://media.licdn.com/dms/image/C5603AQGFRGF7elhX_A/profile-disp
 authorLinkedinUrl: https://www.linkedin.com/in/parthibansudhaman/
 ---
 
+import Campaign from "~/components/blog/Campaign.astro";
+
 ![](https://cdn-images-1.medium.com/max/NaN/1*RD1s9xBIvd_ycJUnX12Tyw@2x.png)
 
 Bots are awesome, I thought of having my own personal assistant in Salesforce, who could do most common tasks for me based on my inputs in my own way. This could open up millions of opportunities to automate most of the tasks and the best thing is I can chat with my bot the way how I chat with my human assistant (if I have one :)).
@@ -82,6 +84,7 @@ I have created a very simple component, which has one aura:iteration to loop thr
 
 And client controller code,
 
+```
     ({
         postUserChat: function(component, event, helper){
             if(event.getParams().keyCode !== 13){
@@ -122,9 +125,11 @@ And client controller code,
             $A.enqueueAction(action);
         }
     })
+```
 
 and the apex class to invoke to nodejs service,
 
+```
     public with sharing class HandlerChatBot {
         @AuraEnabled
         public static string postChatText(string chatText){
@@ -145,6 +150,7 @@ and the apex class to invoke to nodejs service,
             return response.getBody();
         }
     }
+```
 
 That summarizes the coding part and I have configured the component as Utility Bar Component in Sales app, so it appears in the footer section.
 
@@ -159,3 +165,7 @@ Steps to create an Utility Bar Component:
 4.  Select the ChatBot component and Ta-da.
 
 Your chatbot is ready, You can find the entire code base [here](https://github.com/parthi22/SFchatbot). Hope this helps!
+
+```
+
+```

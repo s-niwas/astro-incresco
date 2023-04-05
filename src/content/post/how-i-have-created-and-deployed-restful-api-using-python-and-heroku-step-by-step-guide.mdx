@@ -16,6 +16,8 @@ authorAvatar: https://media.licdn.com/dms/image/C5603AQGFRGF7elhX_A/profile-disp
 authorLinkedinUrl: https://www.linkedin.com/in/parthibansudhaman/
 ---
 
+import Campaign from "~/components/blog/Campaign.astro";
+
 ![](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*PiWBbp4H76ITuEMRW6EyrQ.jpeg)
 
 Here is the story — I started learning Python a week before and started to try out things on my own. Classes, variables, loops and packages — all the programming stuffs were so cool, but the real challenge was when I started working on building restful service and DEPLOY.
@@ -81,7 +83,7 @@ In the first line, I have imported Resource from flask_restful, this will give a
 
 From line number 3 to 20, its a todos object ideally will reside in a database, but for simplicity I have defined it here.
 
-Interesting things start from line number 21, The class Todo has GET and PUT method defined. When the user requests the URL /Todo/{id}, based on whether it is GET request or PUT the corresponding method will be invoked. But we haven’t defined the routing yet? Yeah. Let’s do that now.
+Interesting things start from line number 21, The class Todo has GET and PUT method defined. When the user requests the URL `/Todo/{id}`, based on whether it is GET request or PUT the corresponding method will be invoked. But we haven’t defined the routing yet? Yeah. Let’s do that now.
 
 Let’s create app.py file in the root directory,
 
@@ -89,7 +91,7 @@ Let’s create app.py file in the root directory,
 
 So here I have imported the required packages, including the Todo class we just created. Also the usual stuffs like wiring up the app and the api.
 
-The routing logic is in line 9. So this has the url pattern “/todo/<id>” will point the request to the Todo class. The request type, the way how it is invoked will parse the “Get” or “Put” method defined in the class Todo. You can try this with any rest client available.
+The routing logic is in line 9. So this has the url pattern `“/todo/<id>”` will point the request to the Todo class. The request type, the way how it is invoked will parse the “Get” or “Put” method defined in the class Todo. You can try this with any rest client available.
 
 **Step 5: Make it Heroku ready and deploy:**
 
@@ -123,7 +125,7 @@ Once you are successfully logged in, then create heroku app, commit and push you
 > git commit -am “initial commit” _— commits all the files_
 > git push heroku master _— pushes the changes to heroku_
 
-After the successful deployment, you will be able to test the get method by browsing “[https://<heroku domain>/todo/1](https://quiet-refuge-59730.herokuapp.com/todo/1)”
+After the successful deployment, you will be able to test the get method by browsing `“https://[heroku domain]/todo/1(https://quiet-refuge-59730.herokuapp.com/todo/1)”`
 
 That summarizes what I have done to make it work and if you have come this far, hopefully this helped you as well.
 
