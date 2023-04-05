@@ -81,6 +81,13 @@ declare module 'astro:content' {
   collection: "post",
   data: InferEntrySchema<"post">
 },
+"empowering-teams-through-delegation-a-guide-to-balancing-leadership-and-autonomy.md": {
+  id: "empowering-teams-through-delegation-a-guide-to-balancing-leadership-and-autonomy.md",
+  slug: "empowering-teams-through-delegation-a-guide-to-balancing-leadership-and-autonomy",
+  body: string,
+  collection: "post",
+  data: InferEntrySchema<"post">
+},
 "flutter-scalable-folder-structure.md": {
   id: "flutter-scalable-folder-structure.md",
   slug: "flutter-scalable-folder-structure",
@@ -105,6 +112,13 @@ declare module 'astro:content' {
 "javascript-frameworks-in-2022.md": {
   id: "javascript-frameworks-in-2022.md",
   slug: "javascript-frameworks-in-2022",
+  body: string,
+  collection: "post",
+  data: InferEntrySchema<"post">
+},
+"optimizing-lodash-in-next-js-with-webpack-and-babel-plugin-lodash.md": {
+  id: "optimizing-lodash-in-next-js-with-webpack-and-babel-plugin-lodash.md",
+  slug: "optimizing-lodash-in-next-js-with-webpack-and-babel-plugin-lodash",
   body: string,
   collection: "post",
   data: InferEntrySchema<"post">
