@@ -21,8 +21,6 @@ authorLinkedinUrl: https://www.linkedin.com/in/parthibansudhaman/
 
 ![](https://increscotech.com/blogimages/delegation-and-empowerment-balancing-leadership-for-team-success.jpeg)
 
-## Introduction
-
 In the early stages of leadership, many individuals who are promoted to lead a small team may feel a strong sense of responsibility. This often leads to a belief that they need to learn more than ever before and be available to support their team at every turn. In an effort to avoid failure for both the team and themselves, they may provide assistance even before it is requested.
 
 While these intentions are good, this approach may be flawed. By constantly stepping in to help, leaders may inadvertently prevent their team from facing challenges and developing their problem-solving skills.
