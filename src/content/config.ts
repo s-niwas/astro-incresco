@@ -17,6 +17,7 @@ const post = defineCollection({
     author: z.string().optional(),
     authorRole: z.string().optional(),
     authorAvatar: z.string().optional(),
+    authorLinkedinUrl: z.string().optional(),
   }),
 });
 

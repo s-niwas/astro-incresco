@@ -47,6 +47,7 @@ export interface Post {
   author?: string;
   authorRole?: string;
   authorAvatar?: string;
+  authorLinkedInUrl?: string;
 
   Content: unknown;
   content?: string;

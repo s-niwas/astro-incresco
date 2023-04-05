@@ -16,6 +16,7 @@ tags:
 author: Parthiban Sudhaman
 authorRole: CEO
 authorAvatar: https://media.licdn.com/dms/image/C5603AQGFRGF7elhX_A/profile-displayphoto-shrink_800_800/0/1617151081605?e=1685577600&v=beta&t=gtKAwhp87sMtZtAl1wOz2qF03R41bhjYdagLTTXyY2A
+authorLinkedinUrl: https://www.linkedin.com/in/parthibansudhaman/
 ---
 
 ![](https://increscotech.com/blogimages/empowering-teams-through-delegation-a-guide-to-balancing-leadership-and-autonomy.jpeg)
@@ -42,11 +43,11 @@ However, implementing delegation isn't without its challenges:
 
 In conversations with fellow leaders, some common reasons why they might get too involved, insist on being CCed in all emails, attend every meeting, and remain constantly available at the office have been identified:
 
--   Fear of failure
--   Lack of trust
--   Insecurity
--   Difficulty in letting go
--   Inadequate delegation skills
+- Fear of failure
+- Lack of trust
+- Insecurity
+- Difficulty in letting go
+- Inadequate delegation skills
 
 ## Overcoming the Challenges of Delegation
 

@@ -3,15 +3,7 @@ import type { CollectionEntry } from "astro:content";
 import type { Post } from "~/types";
 import { cleanSlug, trimSlash, POST_PERMALINK_PATTERN } from "./permalinks";
 
-const generatePermalink = async ({
-  id,
-  slug,
-  publishDate,
-  category,
-  author,
-  authorRole,
-  authorAvatar,
-}) => {
+const generatePermalink = async ({ id, slug, publishDate, category }) => {
   const year = String(publishDate.getFullYear()).padStart(4, "0");
   const month = String(publishDate.getMonth() + 1).padStart(2, "0");
   const day = String(publishDate.getDate()).padStart(2, "0");
@@ -48,7 +40,7 @@ const getNormalizedPost = async (
     author,
     authorRole,
     authorAvatar,
-
+    authorLinkedinUrl,
     publishDate: rawPublishDate = new Date(),
     ...rest
   } = data;
@@ -68,6 +60,7 @@ const getNormalizedPost = async (
     author: author,
     authorRole,
     authorAvatar,
+    authorLinkedinUrl,
 
     ...rest,
 
@@ -82,6 +75,7 @@ const getNormalizedPost = async (
       author,
       authorRole,
       authorAvatar,
+      authorLinkedinUrl,
     }),
 
     readingTime: remarkPluginFrontmatter?.readingTime,

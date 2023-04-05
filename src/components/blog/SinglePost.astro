@@ -52,19 +52,22 @@ const { post, url } = Astro.props;
       {
         post.author && (
           <address class="mb-6 flex items-center px-4 not-italic">
-            <div class="mr-3 inline-flex items-center text-sm">
+            <a
+              href={post.authorLinkedinUrl}
+              target="_blank"
+              rel="author"
+              class="mr-3 inline-flex items-center text-sm"
+            >
               <img
                 class="mr-4 h-16 w-16 rounded-full"
                 src={post.authorAvatar}
                 alt={post.author}
               />
               <div>
-                <a href="#" rel="author" class="text-xl font-bold">
-                  {post.author}
-                </a>
+                <span class="text-xl font-bold">{post.author}</span>
                 <p class="text-base font-light">{post.authorRole}</p>
               </div>
-            </div>
+            </a>
           </address>
         )
       }

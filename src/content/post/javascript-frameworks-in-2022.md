@@ -14,6 +14,7 @@ tags:
 author: Santhosh Kumar Jayaraman
 authorRole: CTO
 authorAvatar: https://media.licdn.com/dms/image/D5603AQH0rXfN8KgTog/profile-displayphoto-shrink_800_800/0/1677514970547?e=1685577600&v=beta&t=U03V2igwr8D4-ooJzpq-HMorH5lNye-kpBwqd_ZB4JM
+authorLinkedinUrl: https://www.linkedin.com/in/santhoshjayaraman/
 ---
 
 ![](https://cdn-images-1.medium.com/max/2000/1*r2kukzjLWVCMj-S5QcT0AQ.png)
