@@ -1,0 +1,20 @@
+---
+import PageLayout from "~/components/layout/PageLayout.astro";
+import ZohoForm from "~/components/home/ZohoForm.astro";
+
+const { generator, site } = Astro;
+const image = new URL("logo.png", site);
+const meta = {
+  title: "Incresco Technology Solutions - Dream to Digital",
+  description:
+    "Incresco is a leading web and mobile app development company that offers customized solutions to help businesses transform digitally. Our services include web development, mobile app development, UI/UX design, e-commerce development, and digital marketing. We use agile methodologies and innovative techniques to deliver high-quality solutions that are scalable, secure, and user-friendly. Partner with us to achieve your business objectives and drive growth in the digital world.",
+  dontUseTitleTemplate: true,
+  image,
+};
+---
+
+<PageLayout meta={meta}>
+  <div class="my-32 mx-4">
+    <ZohoForm />
+  </div>
+</PageLayout>
