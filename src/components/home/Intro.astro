@@ -2,11 +2,21 @@
 import { Icon } from "astro-icon";
 import ContentSection from "~/components/home/ContentSection.astro";
 import Stats from "~/components/home/Stats.astro";
-import CoreBeliefs from "~/components/home/CoreBeliefs.astro";
+import StoryblokComponent from "@storyblok/astro/StoryblokComponent.astro";
+import { useStoryblokApi } from "@storyblok/astro";
+
+const storyblokApi = useStoryblokApi();
+let content;
+try {
+  const { data } = await storyblokApi.get("cdn/stories/core-beliefs", {
+    version: import.meta.env.DEV ? "draft" : "published",
+  });
+  content = data.story.content;
+} catch (error) {}
 ---
 
 <ContentSection title="Dream to Digital" id="about">
-  <CoreBeliefs />
+  <StoryblokComponent blok={content} />
   <Fragment slot="lead">
     Don't settle for less when it comes to your application's performance and
     cost efficiency – choose our serverless stack today.

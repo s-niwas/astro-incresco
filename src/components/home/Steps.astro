@@ -1,28 +1,28 @@
 ---
 import { Icon } from "astro-icon";
+import { storyblokEditable } from "@storyblok/astro";
+import { useStoryblokApi } from "@storyblok/astro";
 
-interface Item {
-  title?: string;
-  description?: string;
-  icon?: string;
-}
+const storyblokApi = useStoryblokApi();
 
-export interface Props {
-  title?: string;
-  subtitle?: string;
-  highlight?: string;
-  items: Array<Item>;
-}
+const { data } = await storyblokApi.get("cdn/stories", {
+  version: import.meta.env.DEV ? "draft" : "published",
+  content_type: "features",
+});
 
-const {
-  title = await Astro.slots.render("title"),
-  subtitle = await Astro.slots.render("subtitle"),
-  highlight,
-  items = [],
-} = Astro.props;
+const posts = data.stories.map((story: any) => {
+  return {
+    title: story.content.title,
+    description: story.content.description,
+    icon: story.content.icon,
+    slug: story.full_slug,
+  };
+});
+
+const { blok } = Astro.props;
 ---
 
-<section class="relative">
+<section class="relative" {...storyblokEditable(blok)}>
   <div class="pointer-events-none absolute inset-0 mb-32" aria-hidden="true">
   </div>
   <div class="relative mx-auto -mb-12 max-w-7xl px-4 sm:px-6">
@@ -30,17 +30,22 @@ const {
       class={`grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 my-12  items-stretch`}
     >
       {
-        items.map(({ title, description, icon }) => (
-          <div class="bg-offset relative flex flex-col rounded border border-transparent  p-6 shadow-lg transition hover:shadow-md dark:border-slate-800 ">
-            <div class="flex items-center">
-              <Icon name={icon} class="h-10 w-10" />
-              <div class="ml-4 text-xl font-bold">{title}</div>
+        posts.map((post: any) => {
+          return (
+            <div class="bg-offset relative flex flex-col rounded border border-transparent  p-6 shadow-lg transition hover:shadow-md dark:border-slate-800 ">
+              <div class="flex items-center">
+                <Icon name={post.icon} class="h-10 w-10" />
+                <div class="ml-4 text-xl font-bold">{post.title}</div>
+              </div>
+              {post.description && (
+                <p
+                  class="text-offset mt-4 text-sm"
+                  set:html={post.description}
+                />
+              )}
             </div>
-            {description && (
-              <p class="text-offset mt-4 text-sm" set:html={description} />
-            )}
-          </div>
-        ))
+          );
+        })
       }
     </div>
   </div>
