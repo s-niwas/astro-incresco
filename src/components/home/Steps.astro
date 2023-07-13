@@ -34,6 +34,7 @@ const { blok } = Astro.props;
           return (
             <div class="bg-offset relative flex flex-col rounded border border-transparent  p-6 shadow-lg transition hover:shadow-md dark:border-slate-800 ">
               <div class="flex items-center">
+                <Icon name={post.icon || "mdi:home"} class="h-10 w-10" />
                 <div class="ml-4 text-xl font-bold">{post.title}</div>
               </div>
               {post.description && (
