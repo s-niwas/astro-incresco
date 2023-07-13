@@ -32,10 +32,7 @@ export default defineConfig({
     react(),
     storyblok({
       accessToken: env.STORYBLOK_TOKEN,
-      components: {
-        coreBeliefs: "components/home/Steps",
-        featurePage: "components/home/CoreBeliefs",
-      },
+      components: {},
       apiOptions: {
         // Choose your Storyblok space region
         region: "eu", // optional,  or 'eu' (default)
