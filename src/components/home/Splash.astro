@@ -2,6 +2,19 @@
 import Starfield from "~/components/home/Starfield.astro";
 import Lottie from "~/components/home/Lottie.astro";
 import { Icon } from "astro-icon";
+import { useStoryblokApi } from "@storyblok/astro";
+
+const storyblokApi = useStoryblokApi();
+let content;
+try {
+  const { data } = await storyblokApi.get(
+    "cdn/stories/global-components/header",
+    {
+      version: import.meta.env.DEV ? "draft" : "published",
+    }
+  );
+  content = data.story.content;
+} catch (error) {}
 ---
 
 <section class="relative h-full bg-black">
@@ -23,8 +36,11 @@ import { Icon } from "astro-icon";
       href="#about"
       class="In hover:border-color-red-500 absolute bottom-16 z-20 flex w-full animate-moving-line flex-col place-items-center justify-center text-center text-white duration-300 hover:-translate-y-1 hover:scale-110 xl:bottom-4 xl:w-1/6"
     >
-      <Icon pack="mdi" name="rocket" class="h-8 animate-moving-line" />
-      <span>Dream to Digital</span>
+      <Icon
+        name={content.scrollSection[0].scrollLogo.icon}
+        class="h-8 animate-moving-line"
+      />
+      <span>{content.scrollSection[0].scrollLabel}</span>
     </a>
   </div>
 </section>
