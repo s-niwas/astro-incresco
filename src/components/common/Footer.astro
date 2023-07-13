@@ -1,36 +1,37 @@
 ---
+import { useStoryblokApi } from "@storyblok/astro";
 import { Icon } from "astro-icon";
 import type { FooterLink } from "~/types";
 
-const links: Array<FooterLink> = [
-  {
-    url: "https://github.com/incresco",
-    description: "GitHub",
-    icon: "mdi:github",
-  },
-  {
-    url: "https://www.linkedin.com/company/incresco-technology/",
-    description: "Linkedin",
-    icon: "mdi:linkedin",
-  },
-  {
-    url: "https://medium.com/incresco",
-    description: "Medium",
-    icon: "mdi:medium",
-  },
-];
+const storyblokApi = useStoryblokApi();
+export interface LinkSection {
+  footerBlockItems: string;
+  icon: string;
+  url: string;
+}
+let content, linkSection: Array<LinkSection>;
+try {
+  const { data } = await storyblokApi.get(
+    "cdn/stories/global-components/footer-component",
+    { version: import.meta.env.DEV ? "draft" : "published" }
+  );
+  content = data.story.content;
+  linkSection = data.story.content.footerSection;
+} catch (error) {
+  console.log("error", error);
+}
 ---
 
 <footer class="relative flex h-32 flex-col items-center justify-center">
   <ul class="relative grid grid-cols-3 gap-8">
     {
-      links.map((link) => (
+      linkSection.map((link) => (
         <li>
           <a
             class="flex h-16 w-16 items-center justify-center rounded-full  p-2"
             href={link.url}
           >
-            <span class="sr-only">{link.description}</span>
+            <span class="sr-only">{link.footerBlockItems}</span>
             <Icon class="h-full" name={link.icon} />
           </a>
         </li>
@@ -39,19 +40,17 @@ const links: Array<FooterLink> = [
   </ul>
 
   <div class="items-center justify-center p-4 text-center text-xs">
-    🚀 Launching your 🌈 vision with our 📚 expertise <br /> Incresco Technology
-    Solutions Private limited
+    {content.bottomBanner[0].bottomQuote}<br />
+    {content.bottomBanner[0].bottomquote}
   </div>
   <div class="items-center justify-center p-4 text-center text-xs">
-    Carbon Footprint: Our website produces just &#x1F343;<a
-      class="underline"
-      href="https://digitalbeacon.co/report/increscotech-com"
+    {content.bottomBanner[0].copyRightText}
+    <a class="underline" href={content.bottomBanner[0].beaconUrl}>
+      {content.bottomBanner[0].carbonContent}</a
     >
-      0.097g of CO2 per page view
-    </a> and is powered by &#x267B; <a
-      class="underline"
-      href="https://www.thegreenwebfoundation.org/green-web-check/?url=https%3A%2F%2Fincrescotech.com"
-      >renewable energy</a
-    >
+    {content.bottomBanner[0].energyText}
+    <a class="underline" href={content.bottomBanner[0].greenWebFoundation}>
+      {content.bottomBanner[0].renewableEnergy}
+    </a>
   </div>
 </footer>
