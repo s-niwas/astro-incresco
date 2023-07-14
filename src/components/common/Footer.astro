@@ -25,7 +25,7 @@ try {
 <footer class="relative flex h-32 flex-col items-center justify-center">
   <ul class="relative grid grid-cols-3 gap-8">
     {
-      linkSection.map((link) => (
+      linkSection?.map((link) => (
         <li>
           <a
             class="flex h-16 w-16 items-center justify-center rounded-full  p-2"
@@ -39,18 +39,5 @@ try {
     }
   </ul>
 
-  <div class="items-center justify-center p-4 text-center text-xs">
-    {content.bottomBanner[0].bottomQuote}<br />
-    {content.bottomBanner[0].bottomquote}
-  </div>
-  <div class="items-center justify-center p-4 text-center text-xs">
-    {content.bottomBanner[0].copyRightText}
-    <a class="underline" href={content.bottomBanner[0].beaconUrl}>
-      {content.bottomBanner[0].carbonContent}</a
-    >
-    {content.bottomBanner[0].energyText}
-    <a class="underline" href={content.bottomBanner[0].greenWebFoundation}>
-      {content.bottomBanner[0].renewableEnergy}
-    </a>
-  </div>
+  <div set:html={content.bottomBanner[0].embedCode} />
 </footer>

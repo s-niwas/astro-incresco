@@ -18,7 +18,7 @@ export async function getStaticPaths({ paginate }) {
 }
 
 const { page } = Astro.props;
-console.log({ page });
+// console.log({ page });
 const currentPage = page.currentPage ?? 1;
 const { generator, site } = Astro;
 const image = new URL("logo.png", site);
