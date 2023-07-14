@@ -8,7 +8,7 @@ export interface Props {
   title?: string;
   subtitle?: string;
   highlight?: string;
-  items?: Array<Item>;
+  items?: any;
 }
 
 const {
@@ -66,7 +66,7 @@ const {
   }
   <div class="row-gap-8 grid grid-cols-2 md:grid-cols-4">
     {
-      items.map(({ name, value }) => (
+      items?.map((item: any) => (
         <div class="mx-8 mb-12 text-center md:mb-0  md:last:border-none dark:md:border-slate-500">
           <div
             class="font-heading  font-bold  lg:text-5xl xl:text-6xl"
@@ -74,10 +74,10 @@ const {
             x-init="updatecounter"
             x-text="Math.round(current)"
           >
-            {value}
+            {item?.description}
           </div>
           <p class="text-sm font-medium uppercase tracking-widest dark:text-slate-400 lg:text-base">
-            {name}
+            {item?.title}
           </p>
         </div>
       ))

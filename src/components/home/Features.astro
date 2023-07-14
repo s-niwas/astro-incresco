@@ -1,62 +1,31 @@
 ---
 import { Icon } from "astro-icon";
 import ContentSection from "~/components/home/ContentSection.astro";
-import type { FeatureItem } from "~/types";
+import { useStoryblokApi } from "@storyblok/astro";
 
-const features: Array<FeatureItem> = [
-  {
-    title: "Web Development",
-    description:
-      "We build apps to reach the widest possible audience base and pleasure to use—from high-end MacBooks connected to fast WiFi networks to low-end Android phones with slow CPUs and flaky 3G connections.",
-    icon: "mdi:monitor-mobile-phone-star",
-  },
-  {
-    title: "Mobile Application",
-    description:
-      "We create high-quality, well-tested, maintainable, and future-ready cross platform apps that your engineers will love, and users deserve.",
-    icon: "carbon:application-mobile",
-  },
-  {
-    title: "Cloud Computing",
-    description:
-      "We help you to build products in cloud using serverless stack in AWS, Azure or Google Cloud.",
-    icon: "eos-icons:cloud-computing-outlined",
-  },
-  {
-    title: "Design",
-    description:
-      "We help people create digital experiences their customers love.",
-    icon: "mdi:design",
-  },
-  {
-    title: "Design System",
-    description:
-      "We help you build reusable UI components with React and features that serve as an extension of your product that is modular and well-documented.",
-    icon: "mdi:react",
-  },
-
-  {
-    title: "Sales CRM",
-    description:
-      "We help you build to scalable CRM system using salesforce lightning platform.",
-    icon: "fa-brands:salesforce",
-  },
-];
+const storyblokApi = useStoryblokApi();
+let content;
+try {
+  const { data } = await storyblokApi.get("cdn/stories/serviceoffered", {
+    version: import.meta.env.DEV ? "draft" : "published",
+  });
+  content = data.story.content;
+} catch (error) {}
 ---
 
-<ContentSection title="How can we help you?" id="services">
+<ContentSection title={content?.serviceTopSection[0]?.title} id="services">
   <Fragment slot="lead">
-    We specialize in providing innovative services that facilitate the transformation of your vision into a successful real-world product
+    {content?.serviceTopSection[0]?.subTitle}
   </Fragment>
   <ul class="grid max-w-6xl grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
     {
-      features.map(({ title, description, icon }) => (
+      content?.services?.map((item: any) => (
         <li class="border-default bg-offset m-3 flex flex-col items-center gap-4 border p-6">
           <div class="m-2 h-24 w-24  rounded-full ">
-            <Icon name={icon} />
+            <Icon name={item?.icon?.icon || "mdi:react"} />
           </div>
-          <p class="text-center text-xl font-extrabold">{title}</p>
-          <p class="text-offset text-center text-sm">{description}</p>
+          <p class="text-center text-xl font-extrabold">{item?.title}</p>
+          <p class="text-offset text-center text-sm">{item?.description}</p>
         </li>
       ))
     }

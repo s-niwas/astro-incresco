@@ -1,74 +1,24 @@
 ---
 import ContentSection from "~/components/home/ContentSection.astro";
-import type { TechnologyItem } from "~/types";
 import TechnologyList from "~/components/home/TechnologyList.astro";
 
-const frameworks: Array<TechnologyItem> = [
-  {
-    title: "React",
-    icon: "mdi:react",
-  },
-  {
-    title: "React Native",
-    icon: "mdi:react",
-  },
-  {
-    title: "Nextjs",
-    icon: "teenyicons:nextjs-outline",
-  },
+import { useStoryblokApi } from "@storyblok/astro";
 
-  {
-    title: "Astro",
-    icon: "simple-icons:astro",
-  },
-  {
-    title: "Vue",
-    icon: "mdi:vuejs",
-  },
-  { title: "Angular", icon: "mdi:angular" },
+const storyblokApi = useStoryblokApi();
+let content;
+try {
+  const { data } = await storyblokApi.get("cdn/stories/technologysection", {
+    version: import.meta.env.DEV ? "draft" : "published",
+  });
+  content = data.story.content;
+} catch (error) {}
 
-  { title: "Vite", icon: "simple-icons:vite" },
-  { title: "Webpack", icon: "mdi:webpack" },
-  {
-    title: "AWS",
-    icon: "cib:amazon-aws",
-  },
-  {
-    title: "Azure",
-    icon: "mdi:microsoft-azure",
-  },
-  {
-    title: "Firebase",
-    icon: "mdi:firebase",
-  },
-  {
-    title: "GCP",
-    icon: "mdi:google-cloud",
-  },
-  { title: "Serverless", icon: "gg:serverless" },
 
-  {
-    title: "Salesforce",
-    icon: "fa-brands:salesforce",
-  },
-
-  {
-    title: "Node",
-    icon: "mdi:nodejs",
-  },
-
-  { title: "GraphQL", icon: "mdi:graphql" },
-  { title: "Storyblok", icon: "simple-icons:storyblok" },
-
-  { title: "Flutter", icon: "cib:flutter" },
-  // { title: "Figma", icon: "tabler:brand-figma" },
-  // { title: "Sketch", icon: "ci:sketch" },
-];
 ---
 
-<ContentSection title="Our Tech Stack" id="technology">
+<ContentSection title={content?.techTopSection[0]?.title} id="technology">
   <Fragment slot="lead">
-    We offer software solutions that are built for the cloud, designed to be serverless, and leverage the latest web and mobile app technologies.
+    {content?.techTopSection[0]?.subTitle}
   </Fragment>
-  <TechnologyList items={frameworks} />
+  <TechnologyList items={content?.techStacks} />
 </ContentSection>

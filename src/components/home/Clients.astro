@@ -1,22 +1,21 @@
 ---
 import ContentSection from "~/components/home/ContentSection.astro";
 import Stats from "~/components/home/Stats.astro";
-import { Image } from "@astrojs/image/components";
-import { getShowcase } from "~/data/showcase";
 import ClientsNew from "./ClientsNew.astro";
+import { useStoryblokApi } from "@storyblok/astro";
 
-const sites = await getShowcase();
+const storyblokApi = useStoryblokApi();
+let content;
+try {
+  const { data } = await storyblokApi.get("cdn/stories/clientssection", {
+    version: import.meta.env.DEV ? "draft" : "published",
+  });
+  content = data.story.content;
+} catch (error) {}
 ---
 
-<ContentSection title="Customers around the world" id="clients">
-  <Stats
-    items={[
-      { name: "Clients", value: "15+" },
-      { name: "Projects", value: "30+" },
-      { name: "Components", value: "2K+" },
-      { name: "Lambdas", value: "5K+" },
-    ]}
-  />
+<ContentSection title={content?.clientTopSection[0]?.title} id="clients">
+  <Stats items={content.serviceServed} />
   <article class="flex w-full overflow-x-hidden bg-white">
     <ClientsNew />
   </article>
