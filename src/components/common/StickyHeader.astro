@@ -31,7 +31,7 @@ try {
       <nav class="hidden sm:block">
         <ul class="flex items-center gap-6">
           {
-            content.navbar.map((item) => (
+            content.navbar.map((item: any) => (
               <li>
                 <a class="text-sm" href={item.url} target="_self">
                   {item.Text}
@@ -70,7 +70,7 @@ try {
           <nav>
             <ul class="flex flex-col">
               {
-                content.navbar.map((item) => (
+                content.navbar.map((item: any) => (
                   <li>
                     <a
                       class="block py-4 text-center text-xl"

@@ -1,22 +1,21 @@
 ---
 import { Icon } from "astro-icon";
 import ThemeSwitcher from "~/components/common/ThemeSwitcher.astro";
-import type { NavItem } from "~/types";
+import { useStoryblokApi } from "@storyblok/astro";
 
 const { generator, site } = Astro;
 
-const navItems: Array<NavItem> = [
-  { title: "Services", url: `${site.origin}#services`, target: "_self" },
-  // { title: "Technology", url: `${site.origin}#technology`, target: "_self" },
-  { title: "Clients", url: `${site.origin}#clients`, target: "_self" },
-  { title: "Contact", url: `${site.origin}#contact`, target: "_self" },
-  { title: "Blog", url: `${site.origin}/blog`, target: "_self" },
-  // {
-  //   title: "Careers",
-  //   url: "https://increscotech.freshteam.com/jobs",
-  //   target: "_blank",
-  // },
-];
+const storyblokApi = useStoryblokApi();
+let content;
+try {
+  const { data } = await storyblokApi.get(
+    "cdn/stories/global-components/header",
+    {
+      version: import.meta.env.DEV ? "draft" : "published",
+    }
+  );
+  content = data.story.content;
+} catch (error) {}
 ---
 
 <header
@@ -25,17 +24,17 @@ const navItems: Array<NavItem> = [
 >
   <a class="flex items-center gap-3 hover:!text-default" href="/">
     <h1 class="sr-only">Incresco</h1>
-    <Icon name="logomark" class="h-10" />
+    <Icon name={content.logo.name || "logomark"} class="h-10" />
   </a>
   <div>
     <div class="flex items-center gap-6">
       <nav class="hidden sm:block">
         <ul class="flex items-center gap-6">
           {
-            navItems.map(({ title, url, target }) => (
+            content.navbar.map((item: any) => (
               <li>
-                <a class="text-sm" href={url} target={target}>
-                  {title}
+                <a class="text-sm" href={item.url} target="_self">
+                  {item.Text}
                 </a>
               </li>
             ))
@@ -71,14 +70,14 @@ const navItems: Array<NavItem> = [
           <nav>
             <ul class="flex flex-col">
               {
-                navItems.map(({ title, url, target }) => (
+                content.navbar.map((item: any) => (
                   <li>
                     <a
                       class="block py-4 text-center text-xl"
-                      href={url}
-                      target={target}
+                      href={item.url}
+                      target="_self"
                     >
-                      {title}
+                      {item.Text}
                     </a>
                   </li>
                 ))
