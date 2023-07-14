@@ -24,7 +24,7 @@ try {
 >
   <a class="flex items-center gap-3 hover:!text-default" href="/">
     <h1 class="sr-only">Incresco</h1>
-    <img src={content.logo.filename} class="h-10" />
+    <Icon name={content.logo.name} class="h-10" />
   </a>
   <div>
     <div class="flex items-center gap-6">
@@ -140,7 +140,7 @@ try {
 
 <style>
   .fixed-header {
-    @apply fixed top-0 bottom-auto;
+    @apply fixed bottom-auto top-0;
     @apply border-default bg-default text-default;
   }
   .modal.is-open {
