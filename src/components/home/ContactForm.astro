@@ -1,4 +1,14 @@
 ---
+import { useStoryblokApi } from "@storyblok/astro";
+const storyblokApi = useStoryblokApi();
+let content;
+try {
+  const { data } = await storyblokApi.get("cdn/stories/contactsection", {
+    version: import.meta.env.DEV ? "draft" : "published",
+  });
+  content = data.story.content;
+} catch (error) {}
+
 ---
 
 <!-- To make this contact form work, create your free access key from https://web3forms.com/ Then you will get all form submissions in your email inbox. -->
@@ -71,7 +81,7 @@
   <div class="flex flex-col items-center gap-4">
     <slot name="eyebrow" />
     <h2 class="text-center font-extrabold tracking-tight text-primary text-6xl">
-      Talk to us
+      {content?.contactTopSection[0]?.title}
     </h2>
   </div>
   <div
@@ -82,11 +92,9 @@
         <div class="mx-auto my-10 w-full rounded-md bg-gray-800 p-5 shadow-sm">
           <div class="text-center md:hidden">
             <p class="text-gray-400 dark:text-gray-400">
-              Get in touch with us to craft your<strong
-                class="text-primary text-lg"
-              >
-                digital story</strong
-              >
+              <Fragment
+                set:html={content?.contactInfoSection[0]?.detailsValue}
+              />
             </p>
           </div>
           <div class="m-7">
@@ -186,20 +194,26 @@
     <slot />
     <div class="w-full items-center justify-center md:w-3/6">
       <p class="mb-4 hidden text-xl md:flex">
-        <span>
-          Get in touch with us to craft your <br />
-          <strong class="text-primary text-2xl"> digital story</strong>
-        </span>
+        <Fragment set:html={content?.contactInfoSection[0]?.detailsValue} />
       </p>
       <p class="mb-4 text-lg">
-        <span>Email us :</span><span class="text-sm">
-          contact@increscotech.com</span
+        <span>{content?.contactInfoSection[0]?.emailLabel}</span><span
+          class="text-sm"
+        >
+          {content?.contactInfoSection[0]?.emailValue}</span
         >
       </p>
       <p class="mb-4 text-sm">
-        <span class="text-lg"> Location :</span>
-        <br /> 1st Floor, L-151,<br /> 5th Main, HSR Layout,<br /> Bengaluru , Karnataka,
-        <br />India -560102 <br />
+        <span class="text-lg">
+          {content?.contactInfoSection[0]?.locationLabel}</span
+        >
+        <br />{content?.contactInfoSection[0]?.addressLine1}<br />{
+          content?.contactInfoSection[0]?.addressLine2
+        }
+        <br />
+        {content?.contactInfoSection[0]?.addressLine3}
+        <br />{content?.contactInfoSection[0]?.addressLine4}
+        <br />
       </p>
     </div>
   </div>
