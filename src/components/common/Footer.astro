@@ -4,12 +4,8 @@ import { Icon } from "astro-icon";
 import type { FooterLink } from "~/types";
 
 const storyblokApi = useStoryblokApi();
-export interface LinkSection {
-  footerBlockItems: string;
-  icon: string;
-  url: string;
-}
-let content, linkSection: Array<LinkSection>;
+
+let content, linkSection;
 try {
   const { data } = await storyblokApi.get(
     "cdn/stories/global-components/footer-component",
@@ -25,7 +21,7 @@ try {
 <footer class="relative flex h-32 flex-col items-center justify-center">
   <ul class="relative grid grid-cols-3 gap-8">
     {
-      linkSection?.map((link) => (
+      linkSection?.map((link: any) => (
         <li>
           <a
             class="flex h-16 w-16 items-center justify-center rounded-full  p-2"
