@@ -34,6 +34,5 @@ try {
       ))
     }
   </ul>
-
-  <div set:html={content.bottomBanner[0].embedCode} />
+  {content && <div set:html={content.bottomBanner[0].embedCode} />}
 </footer>
