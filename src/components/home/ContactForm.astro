@@ -11,6 +11,7 @@ try {
 const formSubmit = content?.contactForm?.find(
   (item: any) => item?.fieldType === "button"
 );
+console.log(formSubmit?.label);
 ---
 
 <!-- To make this contact form work, create your free access key from https://web3forms.com/ Then you will get all form submissions in your email inbox. -->
@@ -169,10 +170,10 @@ const formSubmit = content?.contactForm?.find(
 
               <div class="mb-6">
                 <button
-                  type={formSubmit?.type}
+                  type={formSubmit?.type || "submit"}
                   class="hover:scale-102 inline-block w-full justify-center gap-3 border-2 border-current px-6 py-4 text-white duration-300 hover:-translate-y-1 hover:border-red-500 hover:text-primary"
                 >
-                  {formSubmit?.label}
+                  {formSubmit?.label || "Send Message"}
                 </button>
               </div>
               <p class="text-center text-gray-400 text-base" id="result"></p>
