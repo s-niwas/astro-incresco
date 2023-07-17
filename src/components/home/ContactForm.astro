@@ -126,44 +126,41 @@ try {
 
               {
                 content?.contactForm?.map((item: any) => {
-                  if (item?.fieldType === "input") {
-                    return (
-                      <div class="mb-6">
-                        <label
-                          for={item?.name || "name"}
-                          class="mb-2 block text-sm text-gray-400"
-                        >
-                          {item?.label || "Full Name"}
-                        </label>
-                        <input
-                          type={item?.text || "text"}
-                          name={item?.name || "name"}
-                          id={item?.name || "name"}
-                          placeholder={item?.placeholder || "John Doe"}
-                          required
-                          class="h-12 w-full rounded-sm bg-gray-100 px-3 py-2 text-sm text-gray-900 placeholder-gray-500 focus:outline-none"
-                        />
-                      </div>
-                    );
-                  } else
-                    return (
-                      <div class="mb-6">
-                        <label
-                          for={item?.name || "message"}
-                          class="mb-2 block text-sm text-gray-400"
-                        >
-                          {item?.label || "Your Message"}
-                        </label>
+                  return item?.fieldType === "input" ? (
+                    <div class="mb-6">
+                      <label
+                        for={item?.name || "name"}
+                        class="mb-2 block text-sm text-gray-400"
+                      >
+                        {item?.label || "Full Name"}
+                      </label>
+                      <input
+                        type={item?.text || "text"}
+                        name={item?.name || "name"}
+                        id={item?.name || "name"}
+                        placeholder={item?.placeholder || "John Doe"}
+                        required
+                        class="h-12 w-full rounded-sm bg-gray-100 px-3 py-2 text-sm text-gray-900 placeholder-gray-500 focus:outline-none"
+                      />
+                    </div>
+                  ) : (
+                    <div class="mb-6">
+                      <label
+                        for={item?.name || "message"}
+                        class="mb-2 block text-sm text-gray-400"
+                      >
+                        {item?.label || "Your Message"}
+                      </label>
 
-                        <textarea
-                          name={item?.name || "message"}
-                          id={item?.name || "message"}
-                          placeholder={item?.placeholder || "Your Message"}
-                          class="w-full rounded-sm bg-gray-100 px-3 py-2 text-sm text-gray-900 placeholder-gray-500 focus:outline-none"
-                          required
-                        />
-                      </div>
-                    );
+                      <textarea
+                        name={item?.name || "message"}
+                        id={item?.name || "message"}
+                        placeholder={item?.placeholder || "Your Message"}
+                        class="w-full rounded-sm bg-gray-100 px-3 py-2 text-sm text-gray-900 placeholder-gray-500 focus:outline-none"
+                        required
+                      />
+                    </div>
+                  );
                 })
               }
 
