@@ -24,7 +24,13 @@ try {
 >
   <a class="flex items-center gap-3 hover:!text-default" href="/">
     <h1 class="sr-only">Incresco</h1>
-    <Icon name={content.logo.name || "logomark"} class="h-10" />
+    <image
+      src={content.logo.filename}
+      alt="Incresco"
+      width={216}
+      height={42}
+      class="h-10"
+    />
   </a>
   <div>
     <div class="flex items-center gap-6">
@@ -65,7 +71,13 @@ try {
             </button>
           </header>
           <div class="flex justify-center">
-            <Icon name="logomark" class="h-16" />
+            <image
+              src={content.logo.filename}
+              alt="Incresco"
+              width={216}
+              height={42}
+              class="h-16"
+            />
           </div>
           <nav>
             <ul class="flex flex-col">
