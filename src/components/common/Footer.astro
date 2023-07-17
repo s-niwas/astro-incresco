@@ -6,16 +6,12 @@ import type { FooterLink } from "~/types";
 const storyblokApi = useStoryblokApi();
 
 let content, linkSection;
-try {
-  const { data } = await storyblokApi.get(
-    "cdn/stories/global-components/footer-component",
-    { version: import.meta.env.DEV ? "draft" : "published" }
-  );
-  content = data.story.content;
-  linkSection = data.story.content.footerSection;
-} catch (error) {
-  console.log("error", error);
-}
+const { data } = await storyblokApi.get(
+  "cdn/stories/global-components/footer-component",
+  { version: import.meta.env.DEV ? "draft" : "published" }
+);
+content = data.story.content;
+linkSection = data.story.content.footerSection;
 ---
 
 <footer class="relative flex h-32 flex-col items-center justify-center">
@@ -34,5 +30,5 @@ try {
       ))
     }
   </ul>
-  <Fragment set:html={content.bottomBanner[0].embedCode} />
+  <div set:html={content.bottomBanner[0].embedCode} />
 </footer>
