@@ -8,7 +8,6 @@ try {
   });
   content = data.story.content;
 } catch (error) {}
-
 ---
 
 <!-- To make this contact form work, create your free access key from https://web3forms.com/ Then you will get all form submissions in your email inbox. -->
@@ -131,16 +130,16 @@ try {
                     return (
                       <div class="mb-6">
                         <label
-                          for={item?.name}
+                          for={item?.name || "name"}
                           class="mb-2 block text-sm text-gray-400"
                         >
-                          {item?.label}
+                          {item?.label || "Full Name"}
                         </label>
                         <input
-                          type={item?.text}
-                          name={item?.name}
-                          id={item?.name}
-                          placeholder={item?.placeholder}
+                          type={item?.text || "text"}
+                          name={item?.name || "name"}
+                          id={item?.name || "name"}
+                          placeholder={item?.placeholder || "John Doe"}
                           required
                           class="h-12 w-full rounded-sm bg-gray-100 px-3 py-2 text-sm text-gray-900 placeholder-gray-500 focus:outline-none"
                         />
@@ -150,16 +149,16 @@ try {
                     return (
                       <div class="mb-6">
                         <label
-                          for={item?.name}
+                          for={item?.name || "message"}
                           class="mb-2 block text-sm text-gray-400"
                         >
-                          {item?.label}
+                          {item?.label || "Your Message"}
                         </label>
 
                         <textarea
-                          name={item?.name}
-                          id={item?.name}
-                          placeholder={item?.placeholder}
+                          name={item?.name || "message"}
+                          id={item?.name || "message"}
+                          placeholder={item?.placeholder || "Your Message"}
                           class="w-full rounded-sm bg-gray-100 px-3 py-2 text-sm text-gray-900 placeholder-gray-500 focus:outline-none"
                           required
                         />
