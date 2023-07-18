@@ -22,15 +22,15 @@ const { post, url } = Astro.props;
   <article>
     <header class={post.image ? "" : ""}>
       <div
-        class="mx-auto mt-0 mb-2 flex flex-col justify-between px-4 text-sm sm:flex-row sm:items-center sm:px-6"
+        class="mx-auto mb-2 mt-0 flex flex-col justify-between px-4 text-sm sm:flex-row sm:items-center sm:px-6"
       >
         <p>
           <Icon
             name="tabler:clock"
-            class="w-4 h-4 inline-block -mt-0.5 dark:text-gray-400"
+            class="-mt-0.5 inline-block h-4 w-4 dark:text-gray-400"
           />
           <time datetime={String(post.publishDate)}
-            >{getFormattedDate(post.publishDate)}</time
+            >{getFormattedDate(new Date(post.publishDate))}</time
           >
           {
             post.category && (
@@ -39,7 +39,10 @@ const { post, url } = Astro.props;
                 &#9679;{" "}
                 <a
                   class="capitalize hover:underline"
-                  href={getPermalink(post.category, "category")}
+                  href={getPermalink(
+                    post.category.toLowerCase().replaceAll(" ", "-"),
+                    "category"
+                  )}
                 >
                   {post.category.replaceAll("-", " ")}
                 </a>
@@ -103,11 +106,16 @@ const { post, url } = Astro.props;
     <div
       class="mx-auto mt-8 flex flex-col justify-between px-6 sm:flex-row sm:px-6"
     >
-      <PostTags tags={post.tags} class="mr-5" />
+      <PostTags
+        tags={post.tags
+          .split(",")
+          .map((e) => e.trim().toLowerCase().replaceAll(" ", "-"))}
+        class="mr-5"
+      />
       <SocialShare
         url={url}
         text={post.title}
-        class="mt-5 sm:mt-1 align-middle text-gray-500 dark:text-slate-600"
+        class="mt-5 align-middle text-gray-500 dark:text-slate-600 sm:mt-1"
       />
     </div>
   </article>

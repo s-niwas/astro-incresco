@@ -1,5 +1,5 @@
 ---
-import { BLOG } from "~/config.mjs";
+import { BLOG, SITE } from "~/config.mjs";
 
 import SinglePost from "~/components/blog/SinglePost.astro";
 import ToBlogLink from "~/components/blog/ToBlogLink.astro";
@@ -7,34 +7,87 @@ import PageLayout from "~/components/layout/PageLayout.astro";
 import { getCanonical, getPermalink } from "~/utils/permalinks";
 import { fetchPosts } from "~/utils/blogUtils";
 import { findImage } from "~/utils/images";
+import { useStoryblokApi } from "@storyblok/astro";
+import { BLOG_BASE } from "~/utils/permalinks";
+import BlogList from "~/components/blog/List.astro";
+import Headline from "~/components/blog/HeadLine.astro";
+import Pagination from "~/components/blog/Pagination.astro";
 
-export async function getStaticPaths() {
-  if (BLOG?.disabled || BLOG?.post?.disabled) return [];
-  return (await fetchPosts()).map((post) => ({
+export async function getStaticPaths({}) {
+  if (BLOG?.disabled || BLOG?.list?.disabled) return [];
+
+  const storyblokApi = useStoryblokApi();
+  let pageData: any = [];
+  try {
+    const { data } = await storyblokApi.get("cdn/stories/blog-section", {
+      version: import.meta.env.DEV ? "draft" : "published",
+    });
+    pageData = data.story.content.blogSection;
+  } catch (error) {
+    console.log("error", error);
+  }
+
+  const paths = pageData.map((post: any) => ({
     params: {
-      blog: post.permalink,
+      blog: post?.slug === "blog" ? undefined : post?.slug,
     },
-    props: { post },
   }));
+  const defaultPath = {
+    params: { blog: BLOG_BASE || undefined },
+    pageSize: BLOG.postsPerPage,
+  };
+  return [paths, defaultPath];
 }
 
-const { post } = Astro.props;
-const url = getCanonical(getPermalink(post.permalink, "post"));
+const { blog } = Astro.params;
+const storyblokApi = useStoryblokApi();
 
-const meta = {
-  title: post.title,
-  description: post.description,
-  canonical: post.canonical || url,
-  image: await findImage(post.image),
-  noindex: BLOG?.post?.noindex,
+let blogPost;
+try {
+  const { data } = await storyblokApi.get(`cdn/stories/blog-post/${blog}`, {
+    version: import.meta.env.DEV ? "draft" : "published",
+  });
+  blogPost = data.story.content;
+} catch (error) {
+  console.log("error", error);
+}
+let pageData: any = [];
+try {
+  const { data } = await storyblokApi.get("cdn/stories/blog-section", {
+    version: import.meta.env.DEV ? "draft" : "published",
+  });
+  pageData = data.story.content.blogSection;
+} catch (error) {
+  console.log("error", error);
+}
+
+const post = blogPost;
+const url = getCanonical(getPermalink(post.slug, "post"));
+
+const meta: any = {
+  title: blog ? post.title : `Incresco - Blog`,
+  description: blog ? post.description : SITE.description,
+  canonical: (blog && post.canonical) || url,
+  image: blog ? await findImage(post.image) : "",
+  noindex: blog && BLOG?.post?.noindex,
   ogType: "article",
 };
 ---
 
 <PageLayout {meta}>
-  <section class="mx-auto max-w-6xl px-6 py-12 sm:px-6 sm:py-16 lg:py-20">
-    <SinglePost post={{ ...post, image: meta.image }} url={url}>
-      <ToBlogLink />
-    </SinglePost>
-  </section>
+  {
+    blog ? (
+      <section class="mx-auto max-w-6xl px-6 py-12 sm:px-6 sm:py-16 lg:py-20">
+        <SinglePost post={{ ...post, image: meta.image }} url={url}>
+          <ToBlogLink />
+        </SinglePost>
+      </section>
+    ) : (
+      <section class="mx-auto max-w-6xl px-6 py-16 sm:px-6 sm:py-16 lg:py-20">
+        <Headline subtitle="">Incresco Insider</Headline>
+        <BlogList posts={pageData} />
+        <Pagination prevUrl={`/blog?p=1`} nextUrl={`/blog?p=2`} />
+      </section>
+    )
+  }
 </PageLayout>

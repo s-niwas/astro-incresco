@@ -7,28 +7,40 @@ import Pagination from "~/components/blog/Pagination.astro";
 import { fetchPosts } from "~/utils/blogUtils";
 import { TAG_BASE } from "~/utils/permalinks";
 import Headline from "~/components/blog/HeadLine.astro";
+import { useStoryblokApi } from "@storyblok/astro";
 
 export async function getStaticPaths({ paginate }) {
   if (BLOG?.disabled || BLOG?.tag?.disabled) return [];
+  const storyblokApi = useStoryblokApi();
 
-  const posts = await fetchPosts();
+  let posts: any = [];
+  try {
+    const { data } = await storyblokApi.get("cdn/stories/blog-section", {
+      version: import.meta.env.DEV ? "draft" : "published",
+    });
+    posts = data.story.content.blogSection;
+  } catch (error) {
+    console.log("error", error);
+  }
   const tags = new Set();
-  posts.map((post) => {
-    Array.isArray(post.tags) &&
-      post.tags.map((tag) => tags.add(tag.toLowerCase()));
-  });
-
-  return Array.from(tags).map((tag: string) =>
+  posts.map(
+    (post: any) =>
+      Array.isArray(post.tags.split(",")) &&
+      post.tags.split(",").map((tag: string) => tags.add(tag.toLowerCase()))
+  );
+  return Array.from(tags).map((tag: any) =>
     paginate(
-      posts.filter(
-        (post) =>
-          Array.isArray(post.tags) &&
-          post.tags.find((elem) => elem.toLowerCase() === tag)
-      ),
+      posts
+        .filter(
+          (post: any) =>
+            Array.isArray(post.tags.split(",")) &&
+            post.tags.split(",").find((elem: any) => elem.toLowerCase() === tag)
+        )
+        .sort((a, b) => new Date(b.publishDate) - new Date(a.publishDate)),
       {
-        params: { tag: tag, blog: TAG_BASE || undefined },
+        params: { tag: tag.replaceAll(" ", "-"), blog: TAG_BASE || undefined },
         pageSize: BLOG.postsPerPage,
-        props: { tag },
+        props: { tag: tag },
       }
     )
   );

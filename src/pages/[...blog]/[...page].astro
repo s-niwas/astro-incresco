@@ -8,26 +8,41 @@ import Pagination from "~/components/blog/Pagination.astro";
 
 import { fetchPosts } from "~/utils/blogUtils";
 import { BLOG_BASE } from "~/utils/permalinks";
+import { useStoryblokApi } from "@storyblok/astro";
 
 export async function getStaticPaths({ paginate }) {
+  const storyblokApi = useStoryblokApi();
+
   if (BLOG?.disabled || BLOG?.list?.disabled) return [];
-  return paginate(await fetchPosts(), {
-    params: { blog: BLOG_BASE || undefined },
-    pageSize: BLOG.postsPerPage,
-  });
+  let pageData: any = [];
+  try {
+    const { data } = await storyblokApi.get("cdn/stories/blog-section", {
+      version: import.meta.env.DEV ? "draft" : "published",
+    });
+    pageData = data.story.content.blogSection;
+  } catch (error) {
+    console.log("error", error);
+  }
+
+  return paginate(
+    pageData.sort((a, b) => new Date(b.publishDate) - new Date(a.publishDate)),
+    {
+      params: { blog: BLOG_BASE || undefined },
+      pageSize: BLOG.postsPerPage,
+    }
+  );
 }
 
 const { page } = Astro.props;
-// console.log({ page });
 const currentPage = page.currentPage ?? 1;
-const { generator, site } = Astro;
-const image = new URL("logo.png", site);
+// const { generator, site } = Astro;
+// const image = new URL("logo.png", site);
 const meta = {
   title: `Incresco - Blog${currentPage > 1 ? ` — Page ${currentPage}` : ""}`,
   description: SITE.description,
   noindex: BLOG?.list?.noindex || currentPage > 1,
   ogType: "Incresco blog",
-  image,
+  image: "",
 };
 ---
 

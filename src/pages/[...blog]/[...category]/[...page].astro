@@ -7,26 +7,42 @@ import Headline from "~/components/blog/HeadLine.astro";
 import { fetchPosts } from "~/utils/blogUtils";
 
 import { CATEGORY_BASE } from "~/utils/permalinks";
+import { useStoryblokApi } from "@storyblok/astro";
 
 export async function getStaticPaths({ paginate }) {
   if (BLOG?.disabled || BLOG?.category?.disabled) return [];
+  const storyblokApi = useStoryblokApi();
 
-  const posts = await fetchPosts();
+  let posts: any = [];
+  try {
+    const { data } = await storyblokApi.get("cdn/stories/blog-section", {
+      version: import.meta.env.DEV ? "draft" : "published",
+    });
+    posts = data.story.content.blogSection;
+  } catch (error) {
+    console.log("error", error);
+  }
   const categories = new Set();
-  posts.map((post) => {
+  posts.map((post: any) => {
     typeof post.category === "string" &&
       categories.add(post.category.toLowerCase());
   });
 
-  return Array.from(categories).map((category: string) =>
+  return Array.from(categories).map((category: any) =>
     paginate(
-      posts.filter(
-        (post) =>
-          typeof post.category === "string" &&
-          category === post.category.toLowerCase()
-      ),
+      posts
+        .filter(
+          (post: any) =>
+            typeof post.category === "string" &&
+            category === post.category.toLowerCase()
+        )
+        .sort((a, b) => new Date(b.publishDate) - new Date(a.publishDate)),
+
       {
-        params: { category: category, blog: CATEGORY_BASE || undefined },
+        params: {
+          category: category.replaceAll(" ", "-"),
+          blog: CATEGORY_BASE || undefined,
+        },
         pageSize: BLOG.postsPerPage,
         props: { category },
       }

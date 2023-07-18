@@ -17,7 +17,7 @@ export interface Props {
 const { post } = Astro.props;
 const image = await findImage(post.image);
 
-const link = !BLOG?.post?.disabled ? getPermalink(post.permalink, "post") : "";
+const link = post.slug;
 ---
 
 <article
@@ -52,10 +52,10 @@ const link = !BLOG?.post?.disabled ? getPermalink(post.permalink, "post") : "";
         <span class="text-sm">
           <Icon
             name="tabler:clock"
-            class="w-3.5 h-3.5 inline-block -mt-0.5 dark:text-gray-400"
+            class="-mt-0.5 inline-block h-3.5 w-3.5 dark:text-gray-400"
           />
           <time datetime={String(post.publishDate)}
-            >{getFormattedDate(post.publishDate)}</time
+            >{getFormattedDate(new Date(post.publishDate))}</time
           >
           {
             post.category && (
@@ -64,7 +64,10 @@ const link = !BLOG?.post?.disabled ? getPermalink(post.permalink, "post") : "";
                 ·{" "}
                 <a
                   class="capitalize hover:underline"
-                  href={getPermalink(post.category, "category")}
+                  href={getPermalink(
+                    post.category.toLowerCase().replaceAll(" ", "-"),
+                    "category"
+                  )}
                 >
                   {post.category.replaceAll("-", " ")}
                 </a>
@@ -78,7 +81,7 @@ const link = !BLOG?.post?.disabled ? getPermalink(post.permalink, "post") : "";
           link ? (
             <a
               class="hover:text-primary transition duration-200 ease-in "
-              href={link}
+              href={getPermalink(link, "tags")}
             >
               {post.title}
             </a>
@@ -95,7 +98,11 @@ const link = !BLOG?.post?.disabled ? getPermalink(post.permalink, "post") : "";
       )
     }
     <footer class="mt-5">
-      <PostTags tags={post.tags} />
+      <PostTags
+        tags={post.tags
+          .split(",")
+          .map((e) => e.trim().toLowerCase().replaceAll(" ", "-"))}
+      />
     </footer>
   </div>
 </article>

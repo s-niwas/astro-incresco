@@ -16,7 +16,7 @@ export interface Props {
 const { post } = Astro.props;
 const image = await findImage(post.image);
 
-const link = !BLOG?.post?.disabled ? getPermalink(post.permalink, "post") : "";
+const link = post.slug;
 ---
 
 <article class={`font-sans m-4  flex flex-col `}>
@@ -45,9 +45,9 @@ const link = !BLOG?.post?.disabled ? getPermalink(post.permalink, "post") : "";
     <header>
       <div class="mb-1">
         <span class="text-sm">
-          <Icon name="tabler:clock" class="w-3.5 h-3.5 inline-block -mt-0.5" />
+          <Icon name="tabler:clock" class="-mt-0.5 inline-block h-3.5 w-3.5" />
           <time datetime={String(post.publishDate)}
-            >{getFormattedDate(post.publishDate)}</time
+            >{getFormattedDate(new Date(post.publishDate))}</time
           >
         </span>
       </div>

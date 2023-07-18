@@ -1,63 +1,7 @@
 declare module 'astro:content' {
-	interface Render {
-		'.mdx': Promise<{
-			Content: import('astro').MarkdownInstance<{}>['Content'];
-			headings: import('astro').MarkdownHeading[];
-			remarkPluginFrontmatter: Record<string, any>;
-		}>;
-	}
-}
-declare module 'astro:content' {
-	interface Render {
-		'.md': Promise<{
-			Content: import('astro').MarkdownInstance<{}>['Content'];
-			headings: import('astro').MarkdownHeading[];
-			remarkPluginFrontmatter: Record<string, any>;
-		}>;
-	}
-}
-
-declare module 'astro:content' {
 	export { z } from 'astro/zod';
 	export type CollectionEntry<C extends keyof typeof entryMap> =
-		(typeof entryMap)[C][keyof (typeof entryMap)[C]];
-
-	// TODO: Remove this when having this fallback is no longer relevant. 2.3? 3.0? - erika, 2023-04-04
-	/**
-	 * @deprecated
-	 * `astro:content` no longer provide `image()`.
-	 *
-	 * Please use it through `schema`, like such:
-	 * ```ts
-	 * import { defineCollection, z } from "astro:content";
-	 *
-	 * defineCollection({
-	 *   schema: ({ image }) =>
-	 *     z.object({
-	 *       image: image(),
-	 *     }),
-	 * });
-	 * ```
-	 */
-	export const image: never;
-
-	// This needs to be in sync with ImageMetadata
-	export type ImageFunction = () => import('astro/zod').ZodObject<{
-		src: import('astro/zod').ZodString;
-		width: import('astro/zod').ZodNumber;
-		height: import('astro/zod').ZodNumber;
-		format: import('astro/zod').ZodUnion<
-			[
-				import('astro/zod').ZodLiteral<'png'>,
-				import('astro/zod').ZodLiteral<'jpg'>,
-				import('astro/zod').ZodLiteral<'jpeg'>,
-				import('astro/zod').ZodLiteral<'tiff'>,
-				import('astro/zod').ZodLiteral<'webp'>,
-				import('astro/zod').ZodLiteral<'gif'>,
-				import('astro/zod').ZodLiteral<'svg'>
-			]
-		>;
-	}>;
+		(typeof entryMap)[C][keyof (typeof entryMap)[C]] & Render;
 
 	type BaseSchemaWithoutEffects =
 		| import('astro/zod').AnyZodObject
@@ -72,10 +16,15 @@ declare module 'astro:content' {
 		| BaseSchemaWithoutEffects
 		| import('astro/zod').ZodEffects<BaseSchemaWithoutEffects>;
 
-	export type SchemaContext = { image: ImageFunction };
-
 	type BaseCollectionConfig<S extends BaseSchema> = {
-		schema?: S | ((context: SchemaContext) => S);
+		schema?: S;
+		slug?: (entry: {
+			id: CollectionEntry<keyof typeof entryMap>['id'];
+			defaultSlug: string;
+			collection: string;
+			body: string;
+			data: import('astro/zod').infer<S>;
+		}) => string | Promise<string>;
 	};
 	export function defineCollection<S extends BaseSchema>(
 		input: BaseCollectionConfig<S>
@@ -104,102 +53,21 @@ declare module 'astro:content' {
 		filter?: (entry: CollectionEntry<C>) => unknown
 	): Promise<CollectionEntry<C>[]>;
 
-	type ReturnTypeOrOriginal<T> = T extends (...args: any[]) => infer R ? R : T;
 	type InferEntrySchema<C extends keyof typeof entryMap> = import('astro/zod').infer<
-		ReturnTypeOrOriginal<Required<ContentConfig['collections'][C]>['schema']>
+		Required<ContentConfig['collections'][C]>['schema']
 	>;
 
-	const entryMap: {
-		"pages": {
-"privacy-policy.md": {
-  id: "privacy-policy.md",
-  slug: "privacy-policy",
-  body: string,
-  collection: "pages",
-  data: any
-} & { render(): Render[".md"] },
-},
-"post": {
-"animating-the-web-with-lottie-best-practices-for-optimization.mdx": {
-  id: "animating-the-web-with-lottie-best-practices-for-optimization.mdx",
-  slug: "animating-the-web-with-lottie-best-practices-for-optimization",
-  body: string,
-  collection: "post",
-  data: InferEntrySchema<"post">
-} & { render(): Render[".mdx"] },
-"creating-a-simple-chatbot-in-salesforce-lightning-using-api-ai-in-less-than-60-mins.mdx": {
-  id: "creating-a-simple-chatbot-in-salesforce-lightning-using-api-ai-in-less-than-60-mins.mdx",
-  slug: "creating-a-simple-chatbot-in-salesforce-lightning-using-api-ai-in-less-than-60-mins",
-  body: string,
-  collection: "post",
-  data: InferEntrySchema<"post">
-} & { render(): Render[".mdx"] },
-"delegation-and-empowerment-balancing-leadership-for-team-success.mdx": {
-  id: "delegation-and-empowerment-balancing-leadership-for-team-success.mdx",
-  slug: "delegation-and-empowerment-balancing-leadership-for-team-success",
-  body: string,
-  collection: "post",
-  data: InferEntrySchema<"post">
-} & { render(): Render[".mdx"] },
-"flutter-scalable-folder-structure.mdx": {
-  id: "flutter-scalable-folder-structure.mdx",
-  slug: "flutter-scalable-folder-structure",
-  body: string,
-  collection: "post",
-  data: InferEntrySchema<"post">
-} & { render(): Render[".mdx"] },
-"generating-a-style-dictionary-from-a-design-system-palette-using-the-adobe-XD-extension-in-VSCode.mdx": {
-  id: "generating-a-style-dictionary-from-a-design-system-palette-using-the-adobe-XD-extension-in-VSCode.mdx",
-  slug: "generating-a-style-dictionary-from-a-design-system-palette-using-the-adobe-xd-extension-in-vscode",
-  body: string,
-  collection: "post",
-  data: InferEntrySchema<"post">
-} & { render(): Render[".mdx"] },
-"how-i-have-created-and-deployed-restful-api-using-python-and-heroku-step-by-step-guide.mdx": {
-  id: "how-i-have-created-and-deployed-restful-api-using-python-and-heroku-step-by-step-guide.mdx",
-  slug: "how-i-have-created-and-deployed-restful-api-using-python-and-heroku-step-by-step-guide",
-  body: string,
-  collection: "post",
-  data: InferEntrySchema<"post">
-} & { render(): Render[".mdx"] },
-"javascript-frameworks-in-2022.mdx": {
-  id: "javascript-frameworks-in-2022.mdx",
-  slug: "javascript-frameworks-in-2022",
-  body: string,
-  collection: "post",
-  data: InferEntrySchema<"post">
-} & { render(): Render[".mdx"] },
-"navigating-feedback-a-new-managers-guide-to-effective-communication-and-growth.md": {
-  id: "navigating-feedback-a-new-managers-guide-to-effective-communication-and-growth.md",
-  slug: "navigating-feedback-a-new-managers-guide-to-effective-communication-and-growth",
-  body: string,
-  collection: "post",
-  data: InferEntrySchema<"post">
-} & { render(): Render[".md"] },
-"optimizing-lodash-in-next-js-with-webpack-and-babel-plugin-lodash.mdx": {
-  id: "optimizing-lodash-in-next-js-with-webpack-and-babel-plugin-lodash.mdx",
-  slug: "optimizing-lodash-in-next-js-with-webpack-and-babel-plugin-lodash",
-  body: string,
-  collection: "post",
-  data: InferEntrySchema<"post">
-} & { render(): Render[".mdx"] },
-"planet-sim-wins-the-proptech-mobile-app-of-the-year-2023.mdx": {
-  id: "planet-sim-wins-the-proptech-mobile-app-of-the-year-2023.mdx",
-  slug: "planet-sim-wins-the-proptech-mobile-app-of-the-year-2023",
-  body: string,
-  collection: "post",
-  data: InferEntrySchema<"post">
-} & { render(): Render[".mdx"] },
-"solving-the-cors-onundrum:-an-in-depth-look-at-cross-origin-resource-sharing.mdx": {
-  id: "solving-the-cors-onundrum:-an-in-depth-look-at-cross-origin-resource-sharing.mdx",
-  slug: "solving-the-cors-onundrum-an-in-depth-look-at-cross-origin-resource-sharing",
-  body: string,
-  collection: "post",
-  data: InferEntrySchema<"post">
-} & { render(): Render[".mdx"] },
-},
-
+	type Render = {
+		render(): Promise<{
+			Content: import('astro').MarkdownInstance<{}>['Content'];
+			headings: import('astro').MarkdownHeading[];
+			remarkPluginFrontmatter: Record<string, any>;
+		}>;
 	};
 
-	type ContentConfig = typeof import("../src/content/config");
+	const entryMap: {
+		
+	};
+
+	type ContentConfig = never;
 }

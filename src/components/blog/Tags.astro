@@ -24,7 +24,7 @@ const { tags, class: className = "text-sm" } = Astro.props;
               href={getPermalink(tag, "tag")}
               class="text-muted hover:text-primary  dark:hover:text-gray-200"
             >
-              {tag}
+              {tag.replaceAll("-", " ")}
             </a>
           )}
         </li>

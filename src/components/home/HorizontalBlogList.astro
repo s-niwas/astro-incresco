@@ -5,15 +5,27 @@ import HeadLine from "~/components/blog/HeadLine.astro";
 
 import { fetchPosts } from "~/utils/blogUtils";
 import { BLOG_BASE } from "~/utils/permalinks";
+import { useStoryblokApi } from "@storyblok/astro";
 
 const data = await fetchPosts();
+const storyblokApi = useStoryblokApi();
+
+let content;
+try {
+  const { data: data2 } = await storyblokApi.get("cdn/stories/blog-section", {
+    version: import.meta.env.DEV ? "draft" : "published",
+  });
+  content = data2.story.content.fetatureSection;
+} catch (error) {
+  console.log("error", error);
+}
 ---
 
 <section
   class="mx-auto flex max-w-6xl flex-col items-center py-16 sm:py-16 lg:py-20"
 >
   <HeadLine subtitle="">Incresco Insiders</HeadLine>
-  <HorizontalList posts={data} />
+  <HorizontalList posts={content} />
   <a
     href="/blog"
     class="hover:border-color-red-500 text-md z-50 flex w-full flex-row place-items-center justify-center text-center no-underline duration-300 hover:-translate-y-1 hover:scale-110 xl:bottom-4"
