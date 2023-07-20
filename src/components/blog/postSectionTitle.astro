@@ -1,0 +1,12 @@
+---
+import type { postHeading } from "~/types";
+
+export interface PostHeading {
+  content?: any[];
+  heading: postHeading;
+}
+
+const { titleMedium, ...item } = Astro.props;
+---
+
+<section class="my-2" set:html={titleMedium} />

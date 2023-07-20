@@ -1,6 +1,6 @@
 ---
 import { SITE, BLOG } from "~/config.mjs";
-import LottieAnimation from "astro-integration-lottie/Lottie.astro";
+// import LottieAnimation from "astro-integration-lottie/Lottie.astro";
 import PageLayout from "~/components/layout/PageLayout.astro";
 import BlogList from "~/components/blog/List.astro";
 import Headline from "~/components/blog/HeadLine.astro";
@@ -35,14 +35,14 @@ export async function getStaticPaths({ paginate }) {
 
 const { page } = Astro.props;
 const currentPage = page.currentPage ?? 1;
-// const { generator, site } = Astro;
-// const image = new URL("logo.png", site);
+const { generator, site } = Astro;
+const image = new URL("logo.png", site);
 const meta = {
   title: `Incresco - Blog${currentPage > 1 ? ` — Page ${currentPage}` : ""}`,
   description: SITE.description,
   noindex: BLOG?.list?.noindex || currentPage > 1,
   ogType: "Incresco blog",
-  image: "",
+  image,
 };
 ---
 

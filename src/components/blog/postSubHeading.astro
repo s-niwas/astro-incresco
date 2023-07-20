@@ -1,0 +1,12 @@
+---
+import type { postHeading } from "~/types";
+
+export interface PostHeading {
+  content?: any[];
+  heading: postHeading;
+}
+
+const { subHeading, ...item } = Astro.props;
+---
+
+<h4 class="code-line mb-8 mt-14 font-bold text-base" set:html={subHeading} />

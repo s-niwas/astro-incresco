@@ -1,0 +1,33 @@
+---
+import Heading from "./postHeading.astro";
+import SubHeading from "./postSubHeading.astro";
+import Paragraph from "./postParagraph.astro";
+import ImageSection from "./postImageSection.astro";
+import Title from "./postSectionTitle.astro";
+import Text from "./postTextBlock.astro";
+import PreviewCode from "./postPreviewCode.astro";
+import ListComponent from "./postListComponent.astro";
+import Campaign from "./Campaign.astro";
+
+export interface PostComponents {
+  content?: any[];
+}
+
+const { content } = Astro.props;
+---
+
+{
+  content?.map((item: any) => (
+    <section class="post px-6">
+      {item.component === "paragraphBlock" && <Paragraph {...item} />}
+      {item.component === "headingComponent" && <Heading {...item} />}
+      {item.component === "subHeadingComponent" && <SubHeading {...item} />}
+      {item.component === "featureImage" && <ImageSection {...item} />}
+      {item.component === "sectionTitle" && <Title {...item} />}
+      {item.component === "listComponent" && <ListComponent {...item} />}
+      {item.component === "textBlock" && <Text {...item} />}
+      {item.component === "codePreviewBlock" && <PreviewCode {...item} />}
+      {item.component === "campaignTab" && <Campaign />}
+    </section>
+  ))
+}

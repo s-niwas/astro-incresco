@@ -40,6 +40,7 @@ export async function getStaticPaths({}) {
 }
 
 const { blog } = Astro.params;
+const { page } = Astro.props;
 const storyblokApi = useStoryblokApi();
 
 let blogPost;
@@ -48,15 +49,6 @@ try {
     version: import.meta.env.DEV ? "draft" : "published",
   });
   blogPost = data.story.content;
-} catch (error) {
-  console.log("error", error);
-}
-let pageData: any = [];
-try {
-  const { data } = await storyblokApi.get("cdn/stories/blog-section", {
-    version: import.meta.env.DEV ? "draft" : "published",
-  });
-  pageData = data.story.content.blogSection;
 } catch (error) {
   console.log("error", error);
 }
@@ -85,8 +77,8 @@ const meta: any = {
     ) : (
       <section class="mx-auto max-w-6xl px-6 py-16 sm:px-6 sm:py-16 lg:py-20">
         <Headline subtitle="">Incresco Insider</Headline>
-        <BlogList posts={pageData} />
-        <Pagination prevUrl={`/blog?p=1`} nextUrl={`/blog?p=2`} />
+        <BlogList posts={page} />
+        <Pagination prevUrl={page.url.prev} nextUrl={page.url.next} />
       </section>
     )
   }

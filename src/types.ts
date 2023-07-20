@@ -43,7 +43,7 @@ export interface Post {
 
   excerpt?: string;
   category?: string;
-  tags?: Array<string>;
+  tags?: Array<string> | any;
   author?: string;
   authorRole?: string;
   authorAvatar?: string;
@@ -53,6 +53,8 @@ export interface Post {
   content?: string;
 
   readingTime?: number;
+  contentSection?:any;
+  authorLinkedinUrl?: string;
 }
 
 export interface MetaSEO {
@@ -66,4 +68,11 @@ export interface MetaSEO {
 
   ogTitle?: string;
   ogType?: string;
+}
+
+export interface postComponents {
+  heading ?: any
+}
+export interface postHeading {
+  heading ?: any
 }
