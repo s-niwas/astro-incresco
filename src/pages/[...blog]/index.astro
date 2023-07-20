@@ -19,18 +19,16 @@ export async function getStaticPaths({}) {
   const storyblokApi = useStoryblokApi();
   let pageData: any = [];
   try {
-    const { data } = await storyblokApi.get("cdn/stories/blog-section", {
+    const { data } = await storyblokApi.get("cdn/stories/", {
       version: import.meta.env.DEV ? "draft" : "published",
+      starts_with: "blog-post/",
     });
-    pageData = data.story.content.blogSection;
+    pageData = data.stories || [];
   } catch (error) {
     console.log("error", error);
   }
-
   const paths = pageData.map((post: any) => ({
-    params: {
-      blog: post?.slug === "blog" ? undefined : post?.slug,
-    },
+    params: { blog: post?.slug === "blog" ? undefined : post?.slug },
   }));
   const defaultPath = {
     params: { blog: BLOG_BASE || undefined },
@@ -43,17 +41,18 @@ const { blog } = Astro.params;
 const { page } = Astro.props;
 const storyblokApi = useStoryblokApi();
 
-let blogSection: any = [];
+let blogPostSection: any = []; // it will be having all stories
 try {
-  const { data } = await storyblokApi.get("cdn/stories/blog-section", {
+  const { data } = await storyblokApi.get("cdn/stories/", {
     version: import.meta.env.DEV ? "draft" : "published",
+    starts_with: "blog-post/",
   });
-  blogSection = data.story.content.blogSection || [];
+  blogPostSection = data.stories || [];
 } catch (error) {
   console.log("error", error);
 }
 
-const post = blogSection.find((item: any) => item.slug === blog);
+const post = blogPostSection.find((item: any) => item.slug === blog).content;
 const url = getCanonical(getPermalink(post.slug, "post"));
 
 const meta: any = {

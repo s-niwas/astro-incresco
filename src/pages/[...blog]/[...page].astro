@@ -14,18 +14,22 @@ export async function getStaticPaths({ paginate }) {
   const storyblokApi = useStoryblokApi();
 
   if (BLOG?.disabled || BLOG?.list?.disabled) return [];
-  let pageData: any = [];
+
+  let pageData: any = []; // it will be having all stories
   try {
-    const { data } = await storyblokApi.get("cdn/stories/blog-section", {
+    const { data } = await storyblokApi.get("cdn/stories/", {
       version: import.meta.env.DEV ? "draft" : "published",
+      starts_with: "blog-post/",
     });
-    pageData = data.story.content.blogSection;
+    pageData = data.stories || [];
   } catch (error) {
     console.log("error", error);
   }
-
   return paginate(
-    pageData.sort((a, b) => new Date(b.publishDate) - new Date(a.publishDate)),
+    pageData.sort(
+      (a, b) =>
+        new Date(b.content.publishDate) - new Date(a.content.publishDate)
+    ),
     {
       params: { blog: BLOG_BASE || undefined },
       pageSize: BLOG.postsPerPage,

@@ -13,19 +13,20 @@ export async function getStaticPaths({ paginate }) {
   if (BLOG?.disabled || BLOG?.category?.disabled) return [];
   const storyblokApi = useStoryblokApi();
 
-  let posts: any = [];
+  let posts: any = []; // it will be having all stories
   try {
-    const { data } = await storyblokApi.get("cdn/stories/blog-section", {
+    const { data } = await storyblokApi.get("cdn/stories/", {
       version: import.meta.env.DEV ? "draft" : "published",
+      starts_with: "blog-post/",
     });
-    posts = data.story.content.blogSection;
+    posts = data.stories || [];
   } catch (error) {
     console.log("error", error);
   }
   const categories = new Set();
   posts.map((post: any) => {
-    typeof post.category === "string" &&
-      categories.add(post.category.toLowerCase());
+    typeof post.content.category === "string" &&
+      categories.add(post.content.category.toLowerCase());
   });
 
   return Array.from(categories).map((category: any) =>
@@ -33,10 +34,13 @@ export async function getStaticPaths({ paginate }) {
       posts
         .filter(
           (post: any) =>
-            typeof post.category === "string" &&
-            category === post.category.toLowerCase()
+            typeof post.content.category === "string" &&
+            category === post.content.category.toLowerCase()
         )
-        .sort((a, b) => new Date(b.publishDate) - new Date(a.publishDate)),
+        .sort(
+          (a, b) =>
+            new Date(b.content.publishDate) - new Date(a.content.publishDate)
+        ),
 
       {
         params: {
