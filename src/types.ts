@@ -55,6 +55,7 @@ export interface Post {
   readingTime?: number;
   contentSection?:any;
   authorLinkedinUrl?: string;
+  blogSectionForPost:any[]
 }
 
 export interface MetaSEO {

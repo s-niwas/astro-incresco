@@ -43,17 +43,17 @@ const { blog } = Astro.params;
 const { page } = Astro.props;
 const storyblokApi = useStoryblokApi();
 
-let blogPost;
+let blogSection: any = [];
 try {
-  const { data } = await storyblokApi.get(`cdn/stories/blog-post/${blog}`, {
+  const { data } = await storyblokApi.get("cdn/stories/blog-section", {
     version: import.meta.env.DEV ? "draft" : "published",
   });
-  blogPost = data.story.content;
+  blogSection = data.story.content.blogSection || [];
 } catch (error) {
   console.log("error", error);
 }
 
-const post = blogPost;
+const post = blogSection.find((item: any) => item.slug === blog);
 const url = getCanonical(getPermalink(post.slug, "post"));
 
 const meta: any = {

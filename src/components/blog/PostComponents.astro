@@ -17,7 +17,7 @@ const { content } = Astro.props;
 ---
 
 {
-  content?.map((item: any) => (
+  content.map((item: any) => (
     <section class="post px-6">
       {item.component === "paragraphBlock" && <Paragraph {...item} />}
       {item.component === "headingComponent" && <Heading {...item} />}

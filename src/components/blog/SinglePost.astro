@@ -100,7 +100,9 @@ const { post, url } = Astro.props;
             <post.Content />
           </>
         ) : (
-          <PostComponents content={post.contentSection} />
+          <PostComponents
+            content={post.contentSection || post.blogSectionForPost}
+          />
         )
       }
     </div>
