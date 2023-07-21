@@ -2,20 +2,13 @@
 import ContentSection from "~/components/home/ContentSection.astro";
 import Stats from "~/components/home/Stats.astro";
 import ClientsNew from "./ClientsNew.astro";
-import { useStoryblokApi } from "@storyblok/astro";
 
-const storyblokApi = useStoryblokApi();
-let content;
-try {
-  const { data } = await storyblokApi.get("cdn/stories/clientssection", {
-    version: import.meta.env.DEV ? "draft" : "published",
-  });
-  content = data.story.content;
-} catch (error) {}
+const { clientSection } = Astro.props;
+const { clients, serviceServed, clientTopSection } = clientSection[0];
 ---
 
-<ContentSection title={content?.clientTopSection[0]?.title} id="clients">
-  <Stats items={content.serviceServed} />
+<ContentSection title={clientTopSection[0]?.title} id="clients">
+  <Stats items={serviceServed} />
   <article class="flex w-full overflow-x-hidden bg-white">
     <ClientsNew />
   </article>

@@ -1,6 +1,7 @@
 ---
 import PageLayout from "~/components/layout/PageLayout.astro";
 import ContactForm from "~/components/home/ContactForm.astro";
+import { useStoryblokApi } from "@storyblok/astro";
 
 const { generator, site } = Astro;
 const image = new URL("logo.png", site);
@@ -11,10 +12,19 @@ const meta = {
   dontUseTitleTemplate: true,
   image,
 };
+const storyblokApi = useStoryblokApi();
+let content;
+try {
+  const { data } = await storyblokApi.get(
+    "cdn/stories/global-components/landing-page",
+    { version: import.meta.env.DEV ? "draft" : "published" }
+  );
+  content = data.story.content;
+} catch (error) {}
 ---
 
 <PageLayout meta={meta}>
   <div class="my-32 mx-4">
-    <ContactForm />
+    <ContactForm contactSection={content?.contactSection} />
   </div>
 </PageLayout>

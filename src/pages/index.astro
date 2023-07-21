@@ -9,6 +9,7 @@ import Splash from "~/components/home/Splash.astro";
 import Technology from "~/components/home/Technology.astro";
 import PageLayout from "~/components/layout/PageLayout.astro";
 import HorizontalBlogList from "~/components/home/HorizontalBlogList.astro";
+import { useStoryblokApi } from "@storyblok/astro";
 
 const { generator, site } = Astro;
 const image = new URL("logo.png", site);
@@ -19,16 +20,25 @@ const meta = {
   dontUseTitleTemplate: true,
   image,
 };
+const storyblokApi = useStoryblokApi();
+let content;
+try {
+  const { data } = await storyblokApi.get(
+    "cdn/stories/global-components/landing-page",
+    { version: import.meta.env.DEV ? "draft" : "published" }
+  );
+  content = data.story.content;
+} catch (error) {}
 ---
 
 <PageLayout sticky={true} meta={meta}>
   <Splash />
   <div class="space-y-24 px-8 py-16">
-    <Intro />
-    <Features />
-    <Technology />
-    <Clients />
-    <ContactForm />
+    <Intro featureSection={content?.featureSection} />
+    <Features servicesSection={content?.serviceSection} />
+    <Technology technologySection={content?.techSection} />
+    <Clients clientSection={content?.clientSection} />
+    <ContactForm contactSection={content?.contactSection} />
 
     <HorizontalBlogList />
   </div>

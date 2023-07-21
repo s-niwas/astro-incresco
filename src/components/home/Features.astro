@@ -1,25 +1,18 @@
 ---
 import { Icon } from "astro-icon";
 import ContentSection from "~/components/home/ContentSection.astro";
-import { useStoryblokApi } from "@storyblok/astro";
 
-const storyblokApi = useStoryblokApi();
-let content;
-try {
-  const { data } = await storyblokApi.get("cdn/stories/serviceoffered", {
-    version: import.meta.env.DEV ? "draft" : "published",
-  });
-  content = data.story.content;
-} catch (error) {}
+const { servicesSection } = Astro.props;
+const { services, serviceTopSection } = servicesSection[0];
 ---
 
-<ContentSection title={content?.serviceTopSection[0]?.title} id="services">
+<ContentSection title={serviceTopSection[0]?.title} id="services">
   <Fragment slot="lead">
-    {content?.serviceTopSection[0]?.subTitle}
+    {serviceTopSection[0]?.subTitle}
   </Fragment>
   <ul class="grid max-w-6xl grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
     {
-      content?.services?.map((item: any) => (
+      services?.map((item: any) => (
         <li class="border-default bg-offset m-3 flex flex-col items-center gap-4 border p-6">
           <div class="m-2 h-24 w-24  rounded-full ">
             <Icon name={item?.icon?.icon || "mdi:react"} />
