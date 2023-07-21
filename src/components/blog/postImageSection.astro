@@ -1,0 +1,24 @@
+---
+import type { postHeading } from "~/types";
+
+export interface PostHeading {
+  content?: any[];
+  heading: postHeading;
+}
+
+const { sectionalImage, featuredImage, ...item } = Astro.props;
+const image = featuredImage.id ? featuredImage : sectionalImage;
+---
+
+<p
+  align="center"
+  class="has-line-data my-8 rounded"
+  data-line-start="0"
+  data-line-end="2"
+>
+  <img
+    class={`${featuredImage.id ? "w-full" : ""} rounded`}
+    src={`${image.filename}`}
+    alt={image.alt}
+  />
+</p>

@@ -15,7 +15,7 @@ try {
   const { data: data2 } = await storyblokApi.get("cdn/stories/blog-section", {
     version: import.meta.env.DEV ? "draft" : "published",
   });
-  content = data2.story.content.fetatureSection;
+  content = data2.story.content.blogSection;
 } catch (error) {
   console.log("error", error);
 }

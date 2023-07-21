@@ -1,0 +1,20 @@
+---
+import type { postHeading } from "~/types";
+import { Code } from "astro/components";
+
+export interface PostHeading {
+  content?: any[];
+  heading: postHeading;
+}
+
+const { codePreview, lang, ...item } = Astro.props;
+---
+
+<section class="text-[12px]">
+  <Code
+    lang={lang}
+    code={codePreview}
+    class="code-line mb-8 mt-14 font-normal text-[8px]"
+    style={{ fontSize: 9 }}
+  />
+</section>

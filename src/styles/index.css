@@ -1,2 +1,9 @@
 @import "global.css";
 @import "theme.css";
+
+.post a {
+  color: #60a5fa;
+}
+.post a:hover {
+  color: #f87171;
+}

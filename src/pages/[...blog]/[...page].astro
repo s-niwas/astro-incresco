@@ -1,6 +1,6 @@
 ---
 import { SITE, BLOG } from "~/config.mjs";
-import LottieAnimation from "astro-integration-lottie/Lottie.astro";
+// import LottieAnimation from "astro-integration-lottie/Lottie.astro";
 import PageLayout from "~/components/layout/PageLayout.astro";
 import BlogList from "~/components/blog/List.astro";
 import Headline from "~/components/blog/HeadLine.astro";
@@ -14,18 +14,22 @@ export async function getStaticPaths({ paginate }) {
   const storyblokApi = useStoryblokApi();
 
   if (BLOG?.disabled || BLOG?.list?.disabled) return [];
-  let pageData: any = [];
+
+  let pageData: any = []; // it will be having all stories
   try {
-    const { data } = await storyblokApi.get("cdn/stories/blog-section", {
+    const { data } = await storyblokApi.get("cdn/stories/", {
       version: import.meta.env.DEV ? "draft" : "published",
+      starts_with: "blog-post/",
     });
-    pageData = data.story.content.blogSection;
+    pageData = data.stories || [];
   } catch (error) {
     console.log("error", error);
   }
-
   return paginate(
-    pageData.sort((a, b) => new Date(b.publishDate) - new Date(a.publishDate)),
+    pageData.sort(
+      (a, b) =>
+        new Date(b.content.publishDate) - new Date(a.content.publishDate)
+    ),
     {
       params: { blog: BLOG_BASE || undefined },
       pageSize: BLOG.postsPerPage,
@@ -35,14 +39,14 @@ export async function getStaticPaths({ paginate }) {
 
 const { page } = Astro.props;
 const currentPage = page.currentPage ?? 1;
-// const { generator, site } = Astro;
-// const image = new URL("logo.png", site);
+const { generator, site } = Astro;
+const image = new URL("logo.png", site);
 const meta = {
   title: `Incresco - Blog${currentPage > 1 ? ` — Page ${currentPage}` : ""}`,
   description: SITE.description,
   noindex: BLOG?.list?.noindex || currentPage > 1,
   ogType: "Incresco blog",
-  image: "",
+  image,
 };
 ---
 

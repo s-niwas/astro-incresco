@@ -4,6 +4,7 @@ import { Picture } from "@astrojs/image/components";
 
 import PostTags from "~/components/blog/Tags.astro";
 import SocialShare from "~/components/blog/SocialShare.astro";
+import PostComponents from "~/components/blog/PostComponents.astro";
 
 import { getPermalink } from "~/utils/permalinks";
 import { getFormattedDate } from "~/utils/common";
@@ -99,7 +100,9 @@ const { post, url } = Astro.props;
             <post.Content />
           </>
         ) : (
-          <Fragment set:html={post.content} />
+          <PostComponents
+            content={post.contentSection || post.blogSectionForPost}
+          />
         )
       }
     </div>
@@ -109,7 +112,7 @@ const { post, url } = Astro.props;
       <PostTags
         tags={post.tags
           .split(",")
-          .map((e) => e.trim().toLowerCase().replaceAll(" ", "-"))}
+          .map((e: any) => e.trim().toLowerCase().replaceAll(" ", "-"))}
         class="mr-5"
       />
       <SocialShare

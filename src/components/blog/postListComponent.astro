@@ -1,0 +1,34 @@
+---
+import type { postHeading } from "~/types";
+import ImageSection from "./postImageSection.astro";
+
+export interface PostHeading {
+  content?: any[];
+  heading: postHeading;
+}
+
+const { listTitle, listBlock, ...item } = Astro.props;
+---
+
+<>
+  <p class="my-1">{listTitle}</p>
+  {
+    listBlock.map((item: any) => (
+      <ul style="list-style: disc;" class="my-2">
+        {item.component === "featureImage" && (
+          <section class="my-2">
+            <ImageSection {...item} />
+          </section>
+        )}
+        {item.component === "listBlockItem" && (
+          <li
+            class="has-line-data mx-4 my-1 px-2"
+            data-line-start="19"
+            data-line-end="20"
+            set:html={item.listItems}
+          />
+        )}
+      </ul>
+    ))
+  }
+</>

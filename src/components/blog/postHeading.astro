@@ -1,0 +1,17 @@
+---
+import type { postHeading } from "~/types";
+
+export interface PostHeading {
+  content?: any[];
+  heading: postHeading;
+}
+
+const { sectionalHeading, ...item } = Astro.props;
+---
+
+<h2
+  class="code-line mb-8 mt-14 font-bold text-2xl"
+  data-line-start="12"
+  data-line-end="13"
+  set:html={sectionalHeading}
+/>

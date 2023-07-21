@@ -13,30 +13,38 @@ export async function getStaticPaths({ paginate }) {
   if (BLOG?.disabled || BLOG?.tag?.disabled) return [];
   const storyblokApi = useStoryblokApi();
 
-  let posts: any = [];
+  let posts: any = []; // it will be having all stories
   try {
-    const { data } = await storyblokApi.get("cdn/stories/blog-section", {
+    const { data } = await storyblokApi.get("cdn/stories/", {
       version: import.meta.env.DEV ? "draft" : "published",
+      starts_with: "blog-post/",
     });
-    posts = data.story.content.blogSection;
+    posts = data.stories || [];
   } catch (error) {
     console.log("error", error);
   }
   const tags = new Set();
   posts.map(
     (post: any) =>
-      Array.isArray(post.tags.split(",")) &&
-      post.tags.split(",").map((tag: string) => tags.add(tag.toLowerCase()))
+      Array.isArray(post.content.tags.split(",")) &&
+      post.content.tags
+        .split(",")
+        .map((tag: string) => tags.add(tag.toLowerCase()))
   );
   return Array.from(tags).map((tag: any) =>
     paginate(
       posts
         .filter(
           (post: any) =>
-            Array.isArray(post.tags.split(",")) &&
-            post.tags.split(",").find((elem: any) => elem.toLowerCase() === tag)
+            Array.isArray(post.content.tags.split(",")) &&
+            post.content.tags
+              .split(",")
+              .find((elem: any) => elem.toLowerCase() === tag)
         )
-        .sort((a, b) => new Date(b.publishDate) - new Date(a.publishDate)),
+        .sort(
+          (a, b) =>
+            new Date(b.content.publishDate) - new Date(a.content.publishDate)
+        ),
       {
         params: { tag: tag.replaceAll(" ", "-"), blog: TAG_BASE || undefined },
         pageSize: BLOG.postsPerPage,

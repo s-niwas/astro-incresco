@@ -1,0 +1,12 @@
+---
+import type { postHeading } from "~/types";
+
+export interface PostHeading {
+  content?: any[];
+  heading: postHeading;
+}
+
+const { featuredParagraph, ...item } = Astro.props;
+---
+
+<p class="my-6 leading-8" set:html={featuredParagraph} />
